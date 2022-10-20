@@ -3,12 +3,13 @@ const Joi = require('joi');
 const Userdb = require('../model/model');
 const adminDb = require('../model/adminModel')
 const ObjectId = require('mongoose').Types.ObjectId;
+const passwordComplexity = require('joi-password-complexity');
 
 
 // User sign up
 exports.Create = async (req, res) => {
     try {
-        console.log(req.body);
+        
         const USER = await Userdb.findOne({ $or: [{ email: req.body.email }, { number: req.body.number }] })
         if (USER) {
             req.session.error = "Account already in use"
@@ -23,6 +24,8 @@ exports.Create = async (req, res) => {
             number: req.body.number
         }
         const user = new Userdb(userObj);
+
+        console.log(user);
         const { error } = validate(userObj)
         if (error) {
             req.session.error = error?.details[0].message
@@ -71,5 +74,54 @@ exports.Find = async (req, res) => {
 
     }
 }
+// Admin home
+exports.find = async (req, res) => {
+    try {
+        const data = await Userdb.find()
+        if (req.session.isAdminLogin) {
+            res.status(200).render('admin/dashboard')
+        } else {
+            const admin = await adminDb.findOne({ email: req.body.email, password: req.body.password })
+            if (admin) {
+                req.session.admin = req.body.email;
+                req.session.isAdminLogin = true;
+                res.status(200).redirect('/admin')
+            } else {
+                res.status(401).render('admin/admin_login', { error: "Invalid Username or Password" })
+            }
+        }
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+exports.users = (req, res) => {
+    Userdb.find()
+        .then(data => {
+            res.status(200).render('admin/admin_home', { users: data })
+        })
+        .catch(err => {
+            console.log(err.message);
+        })
+}
 
-
+const validate = (data) => {
+    const schema = Joi.object({
+        id: Joi.allow(),
+        name: Joi.string().min(3).max(30).pattern(/^[a-zA-Z]+ [a-zA-Z]+$/).required().label("Name"),
+        email: Joi.string().email().required().label("Email"),
+        password: new passwordComplexity({ min: 8, max: 100, lowerCase: 1, upperCase: 1, numeric: 1 }).required().label("Password"),
+        number: Joi.string().length(10).pattern(/^[0-9]+$/).required().label("Number"),
+        gender: Joi.string().required().label("Gender")
+    })
+    return schema.validate(data)
+}
+const editValidate = (data) => {
+    const schema = Joi.object({
+        id: Joi.allow(),
+        name: Joi.string().min(3).max(30).pattern(/^[a-zA-Z]+ [a-zA-Z]+$/).required().label("Name"),
+        email: Joi.string().email().required().label("Email"),
+        number: Joi.string().length(10).pattern(/^[0-9]+$/).required().label("Number"),
+        gender: Joi.string().required().label("Gender")
+    })
+    return schema.validate(data)
+}

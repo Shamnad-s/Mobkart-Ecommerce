@@ -24,7 +24,7 @@ const port = 3000
 
 
 
-mongoose.connect('mongodb://localhost:27017/mykart',(err)=>{
+mongoose.connect('mongodb://localhost:27017/lightkart',(err)=>{
     if(err){
         console.log("Could not connect to database");
     }else{

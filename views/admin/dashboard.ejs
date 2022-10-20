@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LightKart: Admin</title>
+    <!-- Swal -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <!-- Ajax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            overflow: hidden;
+        }
+
+        .chartMenu {
+            width: 100vw;
+            height: 40px;
+            background: #1A1A1A;
+            color: rgba(255, 26, 104, 1);
+        }
+
+        .chartMenu p {
+            padding: 10px;
+            font-size: 20px;
+        }
+
+        .chartCard {
+            width: 100vw;
+            height: calc(100vh - 40px);
+            background: rgba(255, 26, 104, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chartBox {
+            width: 300px;
+            padding: 20px;
+            border-radius: 20px;
+            border: solid 3px rgba(255, 26, 104, 1);
+            background: white;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <!-- <div> -->
+            <a href="/admin" class="navbar-brand">Admin</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin/users">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/admin/admin-products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin/banner">Banner</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin/brand">Brands</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin/category">Category</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin/offer">Offers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin/coupon">Coupons</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin/admin-orders">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin/coupon-history">Coupon History</a>
+                    </li>
+                </ul>
+                <button class="btn btn-outline-info" aria-current="page" onclick="adminLogout()">Log Out</button>
+            </div>
+        </div>
+    </nav>
+    <!----------------------------------------------------------------------------------------->
+    <div style="background: #ffd1e1;display: flex;justify-content: space-around; padding-top:1rem">
+        <div class=""
+            style="background: #ffd1e1;padding: 3rem;width: 20%;font-size: x-large;font-weight: 600;text-align: center;">
+            <%=usercount %>
+                <br>
+                Users
+        </div>
+        <div class=""
+            style="background: #ffd1e1;padding: 3rem;width: 20%;font-size: x-large;font-weight: 600;text-align: center;">
+            <%=productcount %>
+                <br>
+                Products
+        </div>
+        <div class=""
+            style="background: #ffd1e1;padding: 3rem;width: 20%;font-size: x-large;font-weight: 600;text-align: center;">
+            <%=ordercount %>
+                <br>
+                Orders
+        </div>
+        <div class=""
+            style="background: #ffd1e1;padding: 3rem;width: 20%;font-size: x-large;font-weight: 600;text-align: center;">
+            $ <%=revenue %>
+                <br>
+                Revenue
+        </div>
+    </div>
+    <!--------------------------------------------Charts--------------------------------------------->
+    <div class="chartCard">
+        <h2 style="position:absolute;top: 15rem;left: 4rem;font-size: 24px;">Payments</h2>
+        <div class="chartBox" style="top:17rem;left:3rem">
+            <canvas id="Chart"></canvas>
+        </div>
+        <h2 style="position:absolute;top: 15rem;left: 24rem;font-size: 24px;">Categories</h2>
+        <div class="chartBox" style="top:17rem;left:23rem;width:35rem">
+            <canvas id="myChart" style="width:100%;"></canvas>
+        </div>
+
+        <h2 style="position:absolute;top: 15rem;left: 60rem;font-size: 24px;">User Status</h2>
+        <div class="chartBox" style="top:17rem;left:59rem">
+            <canvas id="userChart"></canvas>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function adminLogout() {
+            Swal.fire({
+                title: 'Are you want to logout?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Logout'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href = "/admin/logout_admin";
+                }
+            })
+        }
+
+        var xValuesCate = ['Game', 'Editing', 'Office'];
+        var yValuesCate = '<%=catCounts%>';
+        const xCategories = yValuesCate.split(',');
+        const yCategories = xCategories.map((num) => {
+            return parseInt(num);
+        })
+        var barColorsCate = ["red", "green", "blue", "orange", "brown"];
+        var xValues = ['COD', 'Online', 'Wallet'];
+        var yValues = ['<%=codCount%>', '<%=onlineCount%>', '<%=walletCount%>'];
+        var barColors = [
+            "#b91d47",
+            "#00aba9",
+            "#2b5797",
+            "#e8c3b9",
+            "#1e7145",
+            'rgba(255, 26, 104, 0.2)',
+            'violet'
+        ];
+        var cate = '<%=uniqueCategories%>'
+        console.log(typeof (cate));
+        var x3Values = cate.split(",");
+        console.log(x3Values, typeof (x3Values));
+        var x2Values = ['Active', 'Blocked'];
+        var y2Values = ['<%=activeCount%>', '<%=blockedCount%>'];
+        var y3Values = '<%=catCounts%>';
+        var statusColors = ['green', 'red'];
+        var catColors = ["#00aba9", "#2b5797", "#e8c3b9", "#1e7145"]
+
+        new Chart("Chart", {
+            type: "pie",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                }
+            }
+        });
+
+        new Chart("myChart", {
+            type: "bar",
+            data: {
+                labels: xValuesCate,
+                datasets: [{
+                    label: "Categories",
+                    backgroundColor: barColorsCate,
+                    data: yCategories
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        ticks: {
+                            stepSize: 1,
+                            beginAtZero: true,
+                        },
+                    },
+                },
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: "World Wine Production 2018"
+                }
+            }
+        });
+
+        new Chart("userChart", {
+            type: "pie",
+            data: {
+                labels: x2Values,
+                datasets: [{
+                    backgroundColor: statusColors,
+                    data: y2Values
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "World Wide Wine Production 2018"
+                }
+            }
+        });
+
+        new Chart("categoryChart", {
+            type: "doughnut",
+            data: {
+                labels: x3Values,
+                datasets: [{
+                    backgroundColor: catColors,
+                    data: y3Values
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "World Wide Wine Production 2018"
+                }
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
