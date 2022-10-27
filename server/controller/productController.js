@@ -5,51 +5,63 @@ const brandDb = require('../model/brandModel')
 const cartDb = require('../model/cartModel')
 const Joi = require('joi');
 
-// new products
+// --------------------------------------------- New Product -----------------------------------------------
 exports.create = async(req,res)=>{
-    let images = []
-    if(req.files?.Image1){images.push(req.files?.Image1)}
-    if(req.files?.Image2){images.push(req.files?.Image2)}
-    if(req.files?.Image3){images.push(req.files?.Image3)}
-const imgPath = []
-if(images.length){
-    for (let i = 0; i < images.length; i++) {
-        var uploadPath = './public/productsImg/' + Date.now()+i+'.jpeg'
-        var img ='productsImg/' + Date.now()+i+'.jpeg'
-        imgPath.push(img)
-        images[i]?.mv(uploadPath,(err)=>{
-        if(err){
-            console.log(err);
-            return res.status(500).send(err);
+            let images = []
+            if(req.files?.Image1){images.push(req.files?.Image1)}
+            if(req.files?.Image2){images.push(req.files?.Image2)}
+            if(req.files?.Image3){images.push(req.files?.Image3)}
+        const imgPath = []
+        if(images.length){
+            for (let i = 0; i < images.length; i++) {
+                var uploadPath = './public/productsImg/' + Date.now()+i+'.jpeg'
+                var img ='productsImg/' + Date.now()+i+'.jpeg'
+                imgPath.push(img)
+                images[i]?.mv(uploadPath,(err)=>{
+                if(err){
+                    console.log(err);
+                    return res.status(500).send(err);
+                }
+                })
+                }
         }
-        })
+        const proObj = {
+            Name:req.body.Name,
+            Price:req.body.Price,
+            Quantity:req.body.Quantity,
+            Description: req.body.Description,
+            Brand: req.body.Brand,
+            Category:req.body.Category,
+            Image:imgPath
         }
-}
-const proObj = {
-    Name:req.body.Name,
-    Price:req.body.Price,
-    Quantity:req.body.Quantity,
-    Description: req.body.Description,
-    Brand: req.body.Brand,
-    Category:req.body.Category,
-    Image:imgPath
-}
-const product = new productDb(proObj);
-const { error } = validate(proObj)
-if (error) {
-req.session.error = error.details[0].message
-res.redirect('/admin/addProErr')
-}
-product.save(product)
-.then(()=>{
-res.redirect('/admin/admin-products')
-})
-.catch(err=>{
-console.log(err.message);
-});
+    const product = new productDb(proObj);
+    const { error } = validate(proObj)
+    if (error) {
+        req.session.error = error.details[0].message
+        res.redirect('/admin/addProErr')
+    }
+        product.save(product)
+    .then(()=>{
+        res.redirect('/admin/admin-products')
+    })
+    .catch(err=>{
+        console.log(err.message);
+    });
 }
 
-// All products
+const validate = (data) => {
+    const schema = Joi.object({
+        Name: Joi.string().required().label("Name"),
+        Price: Joi.number().required().label("Price"),
+        Quantity: Joi.number().required().label("Quantity"),
+        Description: Joi.string().required().label("Description"),
+        Brand: Joi.string().required().label("Brand"),
+        Category: Joi.string().required().label("Category"),
+        Image: Joi.allow()
+    })
+    return schema.validate(data)
+}
+//All Products
 exports.find = (req,res)=>{
     productDb.find()
     .then(data=>{
@@ -59,7 +71,8 @@ exports.find = (req,res)=>{
         console.log(err.message);
     })
 }
-// edit product
+
+// Edit Product
 exports.updatepage = async(req,res)=>{
     console.log('Product Id : ',req.query.id);
         const product =await productDb.findOne({_id:req.query.id})
@@ -67,6 +80,7 @@ exports.updatepage = async(req,res)=>{
         const cate =await categoryDb.find()
             res.render('admin/product_update',{error:"",product,cate,brand})
 }
+
 exports.update = async(req,res)=>{
     try {
         const id = req.params.id;
@@ -139,7 +153,8 @@ exports.update = async(req,res)=>{
     res.send("Error in updating",error.message);
 }
 }
-// delete product
+
+// Delete Product 
 exports.delete = (req,res)=>{
     const id = req.params.id;
     productDb.findByIdAndDelete(id)
@@ -195,6 +210,7 @@ exports.productDetails = async (req,res)=>{
         res.render('user/product_details',{username,image, products,cartCount,isUserLogin:req.session.isUserLogin})
     }
 }
+
 exports.adminProductDetails = async (req,res)=>{
     image = req.query.image.split(',')
     const products = await productDb.findOne({Image:image})
@@ -239,16 +255,4 @@ exports.adminProductDetails = async (req,res)=>{
     }else{
         res.render('admin/product_details',{image, products,cartCount})
     }
-}
-const validate = (data) => {
-    const schema = Joi.object({
-        Name: Joi.string().required().label("Name"),
-        Price: Joi.number().required().label("Price"),
-        Quantity: Joi.number().required().label("Quantity"),
-        Description: Joi.string().required().label("Description"),
-        Brand: Joi.string().required().label("Brand"),
-        Category: Joi.string().required().label("Category"),
-        Image: Joi.allow()
-    })
-    return schema.validate(data)
 }

@@ -10,7 +10,7 @@ const { v4: uuidv4 } = require("uuid");
 const mongoose = require('mongoose');
 const methodOverride = require("method-override");
 
-const routes = require('express-session');
+
 
 const session = require('express-session');
 
@@ -33,7 +33,7 @@ mongoose.connect('mongodb://localhost:27017/lightkart',(err)=>{
 });
 
 
-
+app.use(fileUpload());
 // app.set('views', path.join(__dirname, 'views'));
 // app.engine('hbs', hbs.engine({extname: 'hbs',defaultLayout: 'layout',layoutsDir:__dirname+'/views/layout/',usersDir:__dirname+'/views/user/'}));
 app.set('view engine', 'ejs');

@@ -2,23 +2,31 @@ const express = require("express");
 const route = express.Router();
 const brandDb = require("../model/brandModel");
 const offerDb = require("../model/offerModel");
-const couponDb = require("../model/couponModel");
+
 const productDb = require("../model/productModel");
 const categoryDb = require("../model/categoryModel");
 const controller = require("../controller/controller");
 const catController = require("../controller/catController");
-const productController = require("../controller/productController");
 const dashController = require("../controller/dashController");
-const objectId = require("mongoose").Types.ObjectId;
-route.get("/", dashController.dash);
-// admin home
+const offerController = require("../controller/offerController");
+const orderController = require("../controller/orderController");
+const brandController = require("../controller/brandController");
+const bannerController = require("../controller/bannerController");
 
+const productController = require("../controller/productController");
+const objectId = require("mongoose").Types.ObjectId;
+
+route.get("/", dashController.dash);
+
+// Admin Home
 route.post("/admin-home", controller.find);
+
 route.use((req, res, next) => {
     if (!req.session.isAdminLogin) {
         res.redirect("/admin");
     } else next();
 });
+
 // Method Override
 route.use((req, res, next) => {
     if (req.query._method == "DELETE") {
@@ -30,7 +38,9 @@ route.use((req, res, next) => {
     }
     next();
 });
+
 route.get("/users", controller.users);
+
 // Adding User
 route.get("/add", (req, res) => {
     res.render("admin/add_user", { error: "" });
@@ -43,14 +53,18 @@ route.get("/adduserError", (req, res) => {
     req.session.error = null;
     res.render("admin/add_user", { error });
 });
+
 // Searching User
 route.get("/search", controller.search);
 
 // User Status
 
 route.patch("/status/:id", controller.block);
-// products
+
+//PRODUCTS
+
 route.get("/admin-products", productController.find);
+
 // Product Add Form
 route.get("/add-product", async (req, res) => {
     const brand = await brandDb.find();
@@ -90,21 +104,70 @@ route.delete("/delete/:id", productController.delete);
 route.get("/users", (req, res) => {
     res.render("admin_home", { users: data });
 });
+// Banner 
+route.get("/banner", bannerController.showBanner);
+route.get("/banner-add", (req, res) => {
+    res.render("admin/banner_add", { error: "" });
+});
+route.post("/banner-add", bannerController.addBanner);
 
-// Category starts
+route.get("/bannerAddErr", (req, res) => {
+    res.render("admin/banner_add", { error: "Banner Image is required" });
+});
+route.get("/banner-update", bannerController.updatePage);
+route.put("/banner-update/:id", bannerController.update);
+route.delete("/banner-delete/:id", bannerController.deleteBanner);
+// Brands 
+
+route.get("/brand", async (req, res) => {
+    const brand = await brandDb.find();
+    res.render("admin/admin_brand", { brand });
+});
+
+route.get("/add-brand", (req, res) => {
+    res.status(200).render("admin/add_brand", { error: "" });
+});
+
+route.post("/add-brand", brandController.create);
+
+route.get("/BrandErr", (req, res) => {
+    res.render("admin/add_brand", { error: "Enter the Name of the brand" });
+});
+
+route.get("/update-brand", brandController.updatepage);
+
+route.put("/update-brand/:id", brandController.update);
+
+route.get("/editBrandErr", async (req, res) => {
+    const id = req.session.brandId;
+    req.session.brandId = null;
+    console.log(req.session.brandId);
+    const brand = await brandDb.findOne({ _id: id });
+    res.render("admin/brand_update", {
+        error: "Enter the Name of the brand",
+        brand,
+    });
+});
+
+route.delete("/delete-brand/:id", brandController.delete);
+
+//Category 
 
 route.get("/category", async (req, res) => {
     const cate = await categoryDb.find();
     res.render("admin/admin_category", { cate });
 });
+
 route.get("/add-category", (req, res) => {
     res.status(200).render("admin/add_category", { error: "" });
 });
+
 route.post("/add-category", catController.create);
 
 route.get("/CategoryErr", (req, res) => {
     res.render("admin/add_category", { error: "Enter the Name of the Category" });
 });
+
 route.get("/update-cate", catController.updatepage);
 
 route.put("/update-cate/:id", catController.update);
@@ -120,5 +183,51 @@ route.get("/editCateErr", async (req, res) => {
 });
 
 route.delete("/delete-cate/:id", catController.delete);
-// category ends
-module.exports = route
+//Offers
+route.get("/offer", offerController.showOffer);
+
+route.patch("/offer-status/:id", offerController.status);
+
+route.get("/offer-add", offerController.adding); //Adding page
+route.post("/offer-add", offerController.addOffer);
+
+route.get("/offerAddErr", async (req, res) => {
+    const error = req.session.error;
+    req.session.error = null;
+    const pros = await productDb.find();
+    return res.render("admin/offer_add", { pros, error });
+});
+
+route.get("/offer-update/:id", offerController.editOffer); //Update page
+route.put("/offer-update/:id", offerController.update);
+
+route.get("/offerEditErr", async (req, res) => {
+    const error = req.session.error;
+    const id = req.session.offerId;
+    req.session.offerId = null;
+    req.session.error = null;
+    const offer = await offerDb.findById(id);
+    const pros = await productDb.find();
+    return res.render("admin/offer_update", { offer, pros, error });
+});
+
+route.delete("/offer-delete/:id", offerController.delete);
+
+
+
+//Orders
+route.get("/admin-orders", orderController.find);
+
+// Cancel orders
+route.put("/cancel-admin/:id", orderController.cancelOrder);
+
+// Update the status
+route.post("/statusUpdate", orderController.statusUpdate);
+
+//LogOut
+route.get("/logout_admin", (req, res) => {
+    req.session.isAdminLogin = false;
+    res.redirect("/");
+});
+
+module.exports = route;

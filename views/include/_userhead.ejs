@@ -9,7 +9,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
    <!-- site metas -->
-   <title>cla</title>
+   <title>Home</title>
    <meta name="keywords" content="">
    <meta name="description" content="">
    <meta name="author" content="">
@@ -48,7 +48,18 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
       integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
       crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+      <!-- new link -->
+      <link rel="stylesheet" type="text/css" href="/css/bootstrap1.css" />
+      <!--owl slider stylesheet -->
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    
+      <!-- font awesome style -->
+      <link href="/css/font-awesome.min1.css" rel="stylesheet" />
+    
+      <!-- Custom styles for this template -->
+      <link href="/css/style1.css" rel="stylesheet" />
+      <!-- responsive style -->
+      <link href="/css/responsive1.css" rel="stylesheet" />
 </head>
 <!-- body -->
 
@@ -68,7 +79,7 @@
                   <div class="full">
                      <div class="center-desk">
                         <a class="navbar-brand" href="/"
-                           style="font-size: xx-large; font-weight: bold; color: white;">CKart</a>
+                           style="font-size: xx-large; font-weight: bold; color: white;">Mobkart</a>
                      </div>
                   </div>
                </div>
@@ -99,12 +110,16 @@
                                           <%= cartCount %>
                                        </span></sup></a>
                               </li>
-                              <li class="nav-item ">
-                                 <a class="nav-link" href="/logout_user"><i class="fa fa-power-off"></i></a>
+                              <li class="nav-item">
+                                 <!-- <a href="/logout_user" class="btn btn-info btn-lg">
+                                    Log out
+                                  </a> -->
+                                  <button href="/logout_user" type="button" class="btn btn-light"> <a href="/logout_user">Log out</a></button>
                               </li>
+                              <!-- <a class="nav-link" href="/logout_user"></a> -->
                               <% }else{ %>
                                  <li class="nav-item ">
-                                    <a class="nav-link" href="/login">Login</a>
+                                    <button  type="button" class="btn btn-light"><a  href="/login">Login</a></button>
                                  </li>
                                  <% } %>
                         </ul>

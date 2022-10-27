@@ -128,7 +128,7 @@ exports.cancelOrder = async(req,res)=>{
     res.redirect('/admin/admin-orders')
 }
 
-// --------------------------------------------- Order from Cart -----------------------------------------------
+//Order from Cart
 exports.myOrders = async(req,res)=>{
     const userId = req.session.user?._id;
     let offerPrice = await cartDb.aggregate([

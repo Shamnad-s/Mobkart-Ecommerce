@@ -1,14 +1,19 @@
+const { NetworkContext } = require('twilio/lib/rest/supersim/v1/network');
 var categoryDb = require('../model/categoryModel');
 const productDb = require('../model/productModel');
-exports.create =async (req,res)=>{
+exports.create =async (req,res,done)=>{
     try{
         if (!req.body.name){
             res.redirect('/admin/CategoryErr')
-        }else{
+        }
+        else{
             const category = new categoryDb({
-                name:req.body.name,
-            })
-            await category.save()
+                name:req.body.name
+            })  
+            await category.save(function(err, data) {
+                if (err) return console.error(err);
+                done(null, data)
+              })
             res.redirect('/admin/category')
         }
         }catch (error) {

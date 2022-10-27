@@ -1,5 +1,6 @@
 <%-include('../include/_userhead')%>
 
+
    <!---------------------- Banner--------------------------------------------------- -->
    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
       <ol class="carousel-indicators">
@@ -45,8 +46,160 @@
                </div>
       </div>
       </div>
+      <!-- Offers -->
+      <section class="shop_section layout_padding">
+         <div class="container">
+            <div class="heading_container heading_center">
+               <h2>
+                  Offers
+               </h2>
+            </div>
+            <div class="row">
+               <% for ( let i=0; i < offers.length; i++){ %>
+                  <div class="col-sm-6 col-xl-3 ">
+                     <div class="box">
+                        <a href="/productDetail?image=<%=offers[i].products.Image %>">
+                           <% if (offers[i].products.Quantity==0) { %>
+                              <div class="img-box">
+                                 <h1 class="outofstock">Out of Stock</h1>
+                                 <img  src="<%= offers[i].products.Image[0] %>"  alt="">
+                              </div>
+                              <% } else { %>
+                                 <div class="img-box">
+      
+                                    <img  src="<%= offers[i].products.Image[0] %>" alt="">
+                                 </div>
+                                 <% } %>
+                        </a>
+                        <div class="detail-box">
+                           <h6>
+                              <%=offers[i].products.Name%>
+                           </h6>
+                           <h6>
+                              Price:
+                              <span  style="text-decoration: line-through; opacity: 50%; font-size:1rem; color:red; padding:0">
+                                 $<%=offers[i].price%>
+                              </span>
+                           </h6>
+                           <h6>
+                             
+                              <span >
+                                 $<%=offers[i].offerPrice%>
+                              </span>
+                           </h6>
+                        </div>
+                        <% if (offers[i].products.Quantity==0) { %>
+                           <div disabled class="d-flex justify-content-between">
+                              <button class="btc_home" onclick="addToCart('<%=products[i]._id%>')">
+                                 Add to cart</button>
+                                 
+
+                              <button type="button" class="btn btn-success"><a
+                                    href="/buy-now?id=<%= products[i]._id%>">Buy Now</a></button>
+                           </div>
+                           <% } else if (isUserLogin) { %>
+                              <div class="d-flex justify-content-between">
+                                 <button class="btc_home" onclick="addToCart('<%=offers[i].products._id%>')">
+                                    Add to Cart
+                                 <button type="button" class="btn btn-success"><a
+                                    href="/buy-now?id=<%= offers[i].products._id%> ">Buy Now</a></button>
+                              </div>
+                              <% } else {%>
+                                 <div class="d-flex justify-content-between">
+                                    <button class="btc_home" onclick="addCartButton()">
+                                       Add to cart
+                                    </button>
+                                    <button class="btn btn-success" onclick="addCartButton()">
+                                       Buy Now
+                                    </button>
+                                 </div>
+                                       <% } %>
+                     </div>
+                  </div>
+                  <% } %>
+            </div>
+      
+         </div>
+      </section>
+      <section class="shop_section layout_padding">
+         <div class="container">
+            <div class="heading_container heading_center">
+               <h2>
+                  Products
+               </h2>
+            </div>
+            <div class="row">
+               <% for ( let i=0; i < products.length; i++){ %>
+                  <div class="col-sm-6 col-xl-3 ">
+                     <div class="box">
+                        <a href="/productDetail?image=<%=products[i].Image %>">
+                           <% if (products[i].Quantity==0) { %>
+                              <div class="img-box">
+                                 <h1 class="outofstock">Out of Stock</h1>
+                                 <img src="<%= products[i].Image[0] %>" alt="">
+                              </div>
+                              <% } else { %>
+                                 <div class="img-box">
+      
+                                    <img src="<%= products[i].Image[0] %>" alt="">
+                                 </div>
+                                 <% } %>
+                        </a>
+                        <div class="detail-box">
+                           <h6>
+                              <%=products[i].Name%>
+                           </h6>
+                           <h6>
+                              Price:
+                              <span>
+                                 $<%=products[i].Price%>
+                              </span>
+                           </h6>
+                        </div>
+                        <% if (isUserLogin) { %>
+                           <% if (fav?.includes(products[i]._id)) { %>
+                              <div class="new">
+                                 <button onclick="addToFav('<%=products[i]._id%>')"><i class="fa-solid fa-heart"
+                                       style="color: rgb(234, 4, 4);" id="<%=products[i]._id%>"></i></button>
+                              </div>
+                              <% } else {%>
+                                 <div class="new">
+                                    <button onclick="addToFav('<%=products[i]._id%>')"><i class="fa-solid fa-heart"
+                                          id="<%=products[i]._id%>"></i></button>
+                                 </div>
+                                 <% } %>
+                                    <div class="d-flex justify-content-between">
+                                       <button class="btc_home" onclick="addToCart('<%=products[i]._id%>')">
+                                          Add
+                                          to cart</button>
+                                       <!-- <a href="/buy-now?id=<%= products[i]._id%> ">
+                                 <h6 class="atc_home">Buy Now</h6>
+                              </a> -->
+      
+                                       <button type="button" class="btn btn-success"><a
+                                             href="/buy-now?id=<%= products[i]._id%>">Buy Now</a></button>
+                                    </div>
+                                    <% } else {%>
+                                       <div class="d-flex justify-content-between">
+                                          <button class="btc_home" onclick="addCartButton()">
+                                             Add to cart
+                                          </button>
+                                          <button class="btn btn-success" onclick="addCartButton()">
+                                             Buy Now
+                                          </button>
+                                       </div>
+                                       <% } %>
+                     </div>
+                  </div>
+                  <% } %>
+            </div>
+         </div>
+    
+      </section>
+
+      
       <!----------------------  Offer --------------------------------------------------- -->
-      <div class="products" style="margin-top:25px;">
+      <!-- <div class="products" style="margin-top:25px;">
          <div class="container p-0">
             <div class="row">
                <div class="col-md-12">
@@ -112,9 +265,9 @@
                </div>
             </div>
          </div>
-      </div>
+      </div> -->
       <!---------------------- products ----------------------------------------------------->
-      <div class="products">
+      <!-- <div class="products">
          <div class="container">
             <div class="row">
                <div class="col-md-12">
@@ -129,9 +282,9 @@
                      <div class="row">
                         <% for ( let i=0; i < products.length; i++){ %>
                            <div class="col-md-4 margin_bottom1">
-                              <div class="product_box">
-                                 <!-- <a onclick="prodetails('<%=products[i].Image%>')"> -->
-                                 <a href="/productDetail?image=<%=products[i].Image %>">
+                              <div class="product_box"> -->
+                                 <!-- <a onclick="prodetails('<%=products[i].Image%>')"> already commentsd-->
+                                 <!-- <a href="/productDetail?image=<%=products[i].Image %>">
                                     <% if (products[i].Quantity==0) { %>
                                        <figure>
                                           <h1 class="outofstock">Out of Stock</h1>
@@ -179,6 +332,9 @@
             </div>
          </div>
       </div>
-   </div>
+   </div> -->
 
+
+  
+  
    <%-include('../include/_userfooter')%>

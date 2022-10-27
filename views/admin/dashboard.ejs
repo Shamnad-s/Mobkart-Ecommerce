@@ -143,7 +143,7 @@
     </div>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- <script>
+    <script>
         function adminLogout() {
             Swal.fire({
                 title: 'Are you want to logout?',
@@ -159,112 +159,112 @@
             })
         }
 
-        var xValuesCate = ['Game', 'Editing', 'Office'];
-        var yValuesCate = '<%=catCounts%>';
-        const xCategories = yValuesCate.split(',');
-        const yCategories = xCategories.map((num) => {
-            return parseInt(num);
-        })
-        var barColorsCate = ["red", "green", "blue", "orange", "brown"];
-        var xValues = ['COD', 'Online', 'Wallet'];
-        var yValues = ['<%=codCount%>', '<%=onlineCount%>', '<%=walletCount%>'];
-        var barColors = [
-            "#b91d47",
-            "#00aba9",
-            "#2b5797",
-            "#e8c3b9",
-            "#1e7145",
-            'rgba(255, 26, 104, 0.2)',
-            'violet'
-        ];
-        var cate = '<%=uniqueCategories%>'
-        console.log(typeof (cate));
-        var x3Values = cate.split(",");
-        console.log(x3Values, typeof (x3Values));
-        var x2Values = ['Active', 'Blocked'];
-        var y2Values = ['<%=activeCount%>', '<%=blockedCount%>'];
-        var y3Values = '<%=catCounts%>';
-        var statusColors = ['green', 'red'];
-        var catColors = ["#00aba9", "#2b5797", "#e8c3b9", "#1e7145"]
+        // var xValuesCate = ['Game', 'Editing', 'Office'];
+        // var yValuesCate = '<%=catCounts%>';
+        // const xCategories = yValuesCate.split(',');
+        // const yCategories = xCategories.map((num) => {
+        //     return parseInt(num);
+        // })
+        // var barColorsCate = ["red", "green", "blue", "orange", "brown"];
+        // var xValues = ['COD', 'Online', 'Wallet'];
+        // var yValues = ['<%=codCount%>', '<%=onlineCount%>', '<%=walletCount%>'];
+        // var barColors = [
+        //     "#b91d47",
+        //     "#00aba9",
+        //     "#2b5797",
+        //     "#e8c3b9",
+        //     "#1e7145",
+        //     'rgba(255, 26, 104, 0.2)',
+        //     'violet'
+        // ];
+        // var cate = '<%=uniqueCategories%>'
+        // console.log(typeof (cate));
+        // var x3Values = cate.split(",");
+        // console.log(x3Values, typeof (x3Values));
+        // var x2Values = ['Active', 'Blocked'];
+        // var y2Values = ['<%=activeCount%>', '<%=blockedCount%>'];
+        // var y3Values = '<%=catCounts%>';
+        // var statusColors = ['green', 'red'];
+        // var catColors = ["#00aba9", "#2b5797", "#e8c3b9", "#1e7145"]
 
-        new Chart("Chart", {
-            type: "pie",
-            data: {
-                labels: xValues,
-                datasets: [{
-                    backgroundColor: barColors,
-                    data: yValues
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                }
-            }
-        });
+        // new Chart("Chart", {
+        //     type: "pie",
+        //     data: {
+        //         labels: xValues,
+        //         datasets: [{
+        //             backgroundColor: barColors,
+        //             data: yValues
+        //         }]
+        //     },
+        //     options: {
+        //         title: {
+        //             display: true,
+        //         }
+        //     }
+        // });
 
-        new Chart("myChart", {
-            type: "bar",
-            data: {
-                labels: xValuesCate,
-                datasets: [{
-                    label: "Categories",
-                    backgroundColor: barColorsCate,
-                    data: yCategories
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        ticks: {
-                            stepSize: 1,
-                            beginAtZero: true,
-                        },
-                    },
-                },
-                legend: { display: false },
-                title: {
-                    display: true,
-                    text: "World Wine Production 2018"
-                }
-            }
-        });
+        // new Chart("myChart", {
+        //     type: "bar",
+        //     data: {
+        //         labels: xValuesCate,
+        //         datasets: [{
+        //             label: "Categories",
+        //             backgroundColor: barColorsCate,
+        //             data: yCategories
+        //         }]
+        //     },
+        //     options: {
+        //         scales: {
+        //             y: {
+        //                 ticks: {
+        //                     stepSize: 1,
+        //                     beginAtZero: true,
+        //                 },
+        //             },
+        //         },
+        //         legend: { display: false },
+        //         title: {
+        //             display: true,
+        //             text: "World Wine Production 2018"
+        //         }
+        //     }
+        // });
 
-        new Chart("userChart", {
-            type: "pie",
-            data: {
-                labels: x2Values,
-                datasets: [{
-                    backgroundColor: statusColors,
-                    data: y2Values
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: "World Wide Wine Production 2018"
-                }
-            }
-        });
+        // new Chart("userChart", {
+        //     type: "pie",
+        //     data: {
+        //         labels: x2Values,
+        //         datasets: [{
+        //             backgroundColor: statusColors,
+        //             data: y2Values
+        //         }]
+        //     },
+        //     options: {
+        //         title: {
+        //             display: true,
+        //             text: "World Wide Wine Production 2018"
+        //         }
+        //     }
+        // });
 
-        new Chart("categoryChart", {
-            type: "doughnut",
-            data: {
-                labels: x3Values,
-                datasets: [{
-                    backgroundColor: catColors,
-                    data: y3Values
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: "World Wide Wine Production 2018"
-                }
-            }
-        });
+        // new Chart("categoryChart", {
+        //     type: "doughnut",
+        //     data: {
+        //         labels: x3Values,
+        //         datasets: [{
+        //             backgroundColor: catColors,
+        //             data: y3Values
+        //         }]
+        //     },
+        //     options: {
+        //         title: {
+        //             display: true,
+        //             text: "World Wide Wine Production 2018"
+        //         }
+        //     }
+        // });
 
-    </script> -->
+    </script>
 
 </body>
 

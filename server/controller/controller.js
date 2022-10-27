@@ -1,10 +1,65 @@
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
-const Userdb = require('../model/model');
+var Userdb = require('../model/model');
+const favDb = require('../model/favModel')
+const bannerDb = require('../model/bannerModel')
 const adminDb = require('../model/adminModel')
+const cartDb = require('../model/cartModel')
+const offerDb = require('../model/offerModel')
+const productDb = require("../model/productModel");
 const ObjectId = require('mongoose').Types.ObjectId;
 const passwordComplexity = require('joi-password-complexity');
-
+// Home Page
+exports.landing = async (req, res) => {
+    try {
+        const products = await productDb.find()
+        const banners = await bannerDb.find()
+        const offers = await offerDb.aggregate([
+            {
+                $match: {
+                    status: true
+                }
+            },
+            {
+                $lookup: {
+                    from: 'productdbs',
+                    localField: 'proId',
+                    foreignField: '_id',
+                    as: 'products'
+                }
+            },
+            {
+                $unwind: '$products'
+            },
+            {
+                $project: {
+                    id: '$products._id',
+                    price: '$products.Price',
+                    products: '$products',
+                    percentage: '$percentage',
+                    offerPrice: { $subtract: ['$products.Price', { $divide: [{ $multiply: ['$products.Price', '$percentage'] }, 100] }] }
+                }
+            }
+        ])
+        if (req.session.isUserLogin) {
+            let cartCount = 0
+            let cart = await cartDb.findOne({ user: req.session.user._id })
+            if (cart) {
+                cartCount = cart.products.length
+            }
+            const userId = req.session.user?._id;
+            const username = req.session.user?.name;
+            const wishlist = await favDb.findOne({ user: ObjectId(userId) })
+            fav = wishlist?.products
+            res.status(200).render("user/Home", { offers, banners, products, isUserLogin: req.session.isUserLogin, username, fav, cartCount });
+        } else {
+            req.session.isUserLogin = false;
+            res.status(200).render("user/Home", { offers, banners, products, isUserLogin: req.session.isUserLogin });
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 
 // User sign up
 exports.Create = async (req, res) => {

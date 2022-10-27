@@ -210,8 +210,8 @@ button {
 }
 
 .layout_padding {
-     padding-top: 90px;
-     padding-bottom: 90px;
+     padding-top: 10px;
+     padding-bottom: 10px;
 }
 
 .layout_padding_2 {
@@ -372,7 +372,7 @@ ul.btn li:last-child {
      z-index: 999;
 }
 .head{
-     background-color: #4843a3;
+     background-color: #449d98;
 }
 
 .logo a {

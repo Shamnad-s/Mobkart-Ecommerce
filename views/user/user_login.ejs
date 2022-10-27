@@ -6,31 +6,62 @@
                 <h2 class="new_userH">Login Page</h2>
             </div>
             <!-- Form -->
-            <form action="/home" method="post" id="login_user">
-                <div class="new_user">
-                    <div class="box-nav d-flex justify-between">
-                        <a href="/signup" class="border-shadow">
-                            <span class="new">Sign Up <i class="fa-solid fa-user-plus"></i> </span>
-                        </a>
-                        <p class="wrong">
-                            <%= error %>
-                        </p>
-                        <a href="/loginotp" class="border-shadow">
-                            <span class="new">Login with OTP </span>
-                        </a>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="email" value="" placeholder="Enter your Email">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="password" value="" placeholder=" Password">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="save_btn">Login</button>
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-lg-12 col-xl-11">
+                        <div class="card text-black" style="border-radius: 25px;">
+                            <div class="card-body p-md-5">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                                        <form action="/home" method="post" id="login_user">
+                                            <div class="new_user">
+                                                
+                                               
+                                                <div class="form-group">
+                                                    <input type="text" name="email" value="" placeholder="Enter your Email">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" name="password" value="" placeholder=" Password">
+                                                </div>
+                                                <div>
+                                                    <a href="/loginotp">
+                                                        <span class="new">Or login with OTP</span>
+                                                    </a>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button  style = "background-color: #45b35e;"type="submit" class="btn-success save_btn">Login</button>
+                                                </div>
+                                                <div class="box-nav d-flex justify-between">
+                                                    
+                                                    <a href="/signup" >
+                                                        <span class="new">Don't Have an account ? <br>Create new account
+                                                        </span>
+                                                    </a>
+                                                    <p class="wrong">
+                                                        <%= error %>
+                                                    </p>
+                                                    
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+    
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                                            class="img-fluid" alt="Sample image">
+    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </main>
+    <style>
+        
+
+    </style>
     <!--/Main-->
     <%-include('../include/_footer')%>

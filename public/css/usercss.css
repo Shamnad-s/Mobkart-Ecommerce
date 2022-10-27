@@ -41,7 +41,7 @@
 }
 .btc_home{
     background: #ffc107;
-    border-radius: 50px;
+    border-radius: 5px;
     width: 40%;
     
 }
@@ -63,6 +63,7 @@
     color: #ff0202;
     transform: rotate(12deg);
     top: 41px;
+    padding-left: 20px;
 }
 
 .prodetail{
