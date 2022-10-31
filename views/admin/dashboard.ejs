@@ -9,11 +9,16 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="sweetalert2.min.css">
+    
     <!-- Ajax -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/w3.css" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+        
     <!-- <style>
         * {
             margin: 0;
@@ -64,7 +69,7 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/admin/users">Users</a>
@@ -95,38 +100,114 @@
                     </li>
                 </ul>
                 <button class="btn btn-outline-info" aria-current="page" onclick="adminLogout()">Log Out</button>
-            </div>
+            </div> -->
         </div>
     </nav>
+    <nav class="w3-sidebar w3-collapse w3-white" style="z-index:4;width:300px;" id="mySidebar"><br>
+        <div class="w3-container w3-row">
+          <div class="w3-col s4">
+            <img src="/w3images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
+          </div>
+          <div class="w3-col s8 w3-bar">
+            <span>Welcome, <strong>Mike</strong></span><br>
+            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
+            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
+            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
+          </div>
+        </div>
+        <hr>
+        <div class="w3-container">
+          <h5>Dashboard</h5>
+        </div>
+        <div class="w3-bar-block">
+          <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+          <a href="/admin/users"class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i> User Mnagement</a>
+          <a href="/admin/admin-products" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Product Managemant</a>
+          <a  href="/admin/banner" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Banner Management</a>
+          <a  href="/admin/brand" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Brand Managemant</a>
+          <a href="/admin/category" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Category Management</a>
+          <a href="/admin/offer" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Offer Managemant</a>
+          <a href="/admin/coupon" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Coupon management</a>
+          <a href="/admin/admin-orders" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i> Orders Management</a>
+          <a href="/admin/coupon-history" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Coupon history</a><br><br>
+        </div>
+      </nav>
+      
     <!----------------------------------------------------------------------------------------->
-    <div style="background: #ffd1e1;display: flex;justify-content: space-around; padding-top:1rem">
-        <div class=""
-            style="background: #ffd1e1;padding: 3rem;width: 20%;font-size: x-large;font-weight: 600;text-align: center;">
+    <!-- <div  style="margin-left:300px; display: flex;justify-content: space-around; padding-top:1rem">
+        <div class="w3-container"
+            style="padding: 3rem;width: 20%;font-size: x-large;font-weight: 600;text-align: center;">
             <%=usercount %>
                 <br>
                 Users
         </div>
         <div class=""
-            style="background: #ffd1e1;padding: 3rem;width: 20%;font-size: x-large;font-weight: 600;text-align: center;">
+            style="padding: 3rem;width: 20%;font-size: x-large;font-weight: 600;text-align: center;">
             <%=productcount %>
                 <br>
                 Products
         </div>
         <div class=""
-            style="background: #ffd1e1;padding: 3rem;width: 20%;font-size: x-large;font-weight: 600;text-align: center;">
+            style="padding: 3rem;width: 20%;font-size: x-large;font-weight: 600;text-align: center;">
             <%=ordercount %>
                 <br>
                 Orders
         </div>
         <div class=""
-            style="background: #ffd1e1;padding: 3rem;width: 20%;font-size: x-large;font-weight: 600;text-align: center;">
+            style="padding: 3rem;width: 20%;font-size: x-large;font-weight: 600;text-align: center;">
             $ <%=revenue %>
                 <br>
                 Revenue
         </div>
-    </div>
+    </div> -->
+    <header class="w3-container" style="padding-top:22px;margin-left:300px">
+        <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+      </header>
+    
+      <div style="margin-left:300px"class="w3-row-padding w3-margin-bottom">
+        <div class="w3-quarter">
+          <div class="w3-container w3-red w3-padding-16">
+            <!-- <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div> -->
+            <div class="w3-right">
+              <h3><%=usercount %></h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>Users</h4>
+          </div>
+        </div>
+        <div class="w3-quarter">
+          <div class="w3-container w3-blue w3-padding-16">
+            <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
+            <div class="w3-right">
+              <h3><%=productcount %></h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>Products</h4>
+          </div>
+        </div>
+        <div class="w3-quarter">
+          <div class="w3-container w3-teal w3-padding-16">
+            <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+            <div class="w3-right">
+              <h3><%=ordercount %></h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>Orders</h4>
+          </div>
+        </div>
+        <div class="w3-quarter">
+          <div class="w3-container w3-orange w3-text-white w3-padding-16">
+            <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+            <div class="w3-right">
+              <h3>$ <%=revenue %></h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>Revenue</h4>
+          </div>
+        </div>
+      </div>
     <!--------------------------------------------Charts--------------------------------------------->
-    <div class="chartCard">
+    <!-- <div class="chartCard">
         <h2 style="position:absolute;top: 15rem;left: 4rem;font-size: 24px;">Payments</h2>
         <div class="chartBox" style="top:17rem;left:3rem">
             <canvas id="Chart"></canvas>
@@ -140,7 +221,10 @@
         <div class="chartBox" style="top:17rem;left:59rem">
             <canvas id="userChart"></canvas>
         </div>
-    </div>
+    </div> -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -265,7 +349,33 @@
         // });
 
     </script>
-
+    <script>
+        // Get the Sidebar
+        var mySidebar = document.getElementById("mySidebar");
+        
+        // Get the DIV with overlay effect
+        var overlayBg = document.getElementById("myOverlay");
+        
+        // Toggle between showing and hiding the sidebar, and add overlay effect
+        function w3_open() {
+          if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+            overlayBg.style.display = "none";
+          } else {
+            mySidebar.style.display = 'block';
+            overlayBg.style.display = "block";
+          }
+        }
+        
+        // Close the sidebar with the close button
+        function w3_close() {
+          mySidebar.style.display = "none";
+          overlayBg.style.display = "none";
+        }
+        </script>
+<style>
+    html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+    </style>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 const { json } = require('express/lib/response');
 const cartDb = require('../model/cartModel')
 var ObjectId = require('mongoose').Types.ObjectId;
-
+// Add product to cart
 exports.addToCart = async(req,res)=>{
     const userId = req.session.user?._id;
     const proId = req.params.id;
@@ -144,7 +144,7 @@ exports.removeProcart =async (req,res)=>{
     res.json(product)
 }
 
-// --------------------------------------------- View Cart -----------------------------------------------
+//View Cart
 exports.userCart = async(req,res)=>{
     try {
         const userId = req.session.user?._id;

@@ -3,7 +3,9 @@ const userRoute = express.Router();
 const cartcontroller = require('../controller/CartController');
 const orderDb = require('../model/orderModel');
 const productDb = require("../model/productModel");
+const favController = require("../controller/favController");
 const controller = require("../controller/controller");
+const savedController = require("../controller/savedController");
 const orderController = require('../controller/orderController');
 const otpcontroller = require("../controller/otpController");
 const productController = require('../controller/productController');
@@ -40,7 +42,7 @@ userRoute.post("/remove-product-cart", cartcontroller.removeProcart)
 
 userRoute.get('/place-order', orderController.myOrders)
 
-// userRoute.post('/place-order/:price', orderController.orderPlacing)
+userRoute.post('/place-order/:price', orderController.orderPlacing)
 
 // userRoute.post('/verify-payment', orderController.paymentVerification)
 // log in with mobile number
@@ -53,11 +55,22 @@ userRoute.get("/loginotp", (req, res) => {
 userRoute.post("/mobile", otpcontroller.mobileNum);
 // Add to cart
 userRoute.get("/add-to-cart:id", cartcontroller.addToCart)
+//  Favorites 
+userRoute.post("/add-to-fav:id", favController.fav)
 
+userRoute.get('/user-fav', favController.find)
+
+userRoute.post("/remove-product-fav", favController.removeProfav)
 
 // OTP submit
 userRoute.post("/otp", otpcontroller.otp);
 userRoute.post('/resend', otpcontroller.resend)
+// Buy Now
+userRoute.get('/buy-now', orderController.buynowPage)
+
+userRoute.post('/save-address', savedController.saveAddress)
+
+userRoute.post('/buyplace-order/:price/:proId', orderController.buynow)
 // User Home
 userRoute.post("/home", controller.Find);
 

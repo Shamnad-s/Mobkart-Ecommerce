@@ -1,4 +1,9 @@
 const Userdb = require('../model/model');
+const cartDb = require('../model/cartModel');
+const bannerDb = require('../model/bannerModel')
+const offerDb = require('../model/offerModel')
+const productDb = require('../model/productModel')
+const favDb = require('../model/favModel')
 const ObjectId = require('mongoose').Types.ObjectId
 var accountSid = process.env.TWILIO_ACCOUNT_SID || 'ACd070d6443029266aa9d26da9c6c47be3';
 var authToken = process.env.TWILIO_AUTH_TOKEN || '28d6bc6a2a4339e57ec7a044f87fd8e0';

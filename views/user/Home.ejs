@@ -89,8 +89,8 @@
                            </h6>
                         </div>
                         <% if (offers[i].products.Quantity==0) { %>
-                           <div disabled class="d-flex justify-content-between">
-                              <button class="btc_home" onclick="addToCart('<%=products[i]._id%>')">
+                           <div  class="d-flex justify-content-between">
+                              <button disabled class="btc_home" onclick="addToCart('<%=products[i]._id%>')">
                                  Add to cart</button>
                                  
 
@@ -98,15 +98,15 @@
                                     href="/buy-now?id=<%= products[i]._id%>">Buy Now</a></button>
                            </div>
                            <% } else if (isUserLogin) { %>
-                              <div class="d-flex justify-content-between">
-                                 <button class="btc_home" onclick="addToCart('<%=offers[i].products._id%>')">
+                              <div style="font-size: 2px;"class="d-flex justify-content-between">
+                                 <button style="padding-left: 2px;padding: 2px;"class="btc_home" onclick="addToCart('<%=offers[i].products._id%>')">
                                     Add to Cart
                                  <button type="button" class="btn btn-success"><a
                                     href="/buy-now?id=<%= offers[i].products._id%> ">Buy Now</a></button>
                               </div>
                               <% } else {%>
                                  <div class="d-flex justify-content-between">
-                                    <button class="btc_home" onclick="addCartButton()">
+                                    <button style="font-size: 2px;" class="btc_home" onclick="addCartButton()">
                                        Add to cart
                                     </button>
                                     <button class="btn btn-success" onclick="addCartButton()">
