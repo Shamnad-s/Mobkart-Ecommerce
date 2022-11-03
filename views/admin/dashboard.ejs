@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
         
-    <!-- <style>
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -40,12 +40,14 @@
         }
 
         .chartCard {
-            width: 100vw;
+           
             height: calc(100vh - 40px);
             background: rgba(255, 26, 104, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-top: 2rem;
+            margin-left: 300px;
         }
 
         .chartBox {
@@ -55,11 +57,18 @@
             border: solid 3px rgba(255, 26, 104, 1);
             background: white;
             position: absolute;
+            margin-left: 300px;
         }
-    </style> -->
+    </style>
 </head>
 
-<body>
+<body class="w3-light-grey">
+  <!-- Top container -->
+<div class="w3-bar w3-top w3-black w3-large " style="z-index:4">
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+  <button class="btn btn-info" aria-current="page" onclick="adminLogout()">Log Out</button>
+</div>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <!-- <div> -->
@@ -108,12 +117,7 @@
           <div class="w3-col s4">
             <img src="/w3images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
           </div>
-          <div class="w3-col s8 w3-bar">
-            <span>Welcome, <strong>Mike</strong></span><br>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
-          </div>
+          
         </div>
         <hr>
         <div class="w3-container">
@@ -121,15 +125,16 @@
         </div>
         <div class="w3-bar-block">
           <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-          <a href="/admin/users"class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i> User Mnagement</a>
-          <a href="/admin/admin-products" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Product Managemant</a>
-          <a  href="/admin/banner" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Banner Management</a>
-          <a  href="/admin/brand" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Brand Managemant</a>
-          <a href="/admin/category" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Category Management</a>
-          <a href="/admin/offer" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Offer Managemant</a>
-          <a href="/admin/coupon" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Coupon management</a>
-          <a href="/admin/admin-orders" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i> Orders Management</a>
-          <a href="/admin/coupon-history" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Coupon history</a><br><br>
+          <a href="/admin"class="w3-bar-item w3-button w3-padding "> Admin</a>
+          <a href="/admin/users"class="w3-bar-item w3-button w3-padding "> User Mnagement</a>
+          <a href="/admin/admin-products" class="w3-bar-item w3-button w3-padding">  Product Managemant</a>
+          <a  href="/admin/banner" class="w3-bar-item w3-button w3-padding">  Banner Management</a>
+          <a  href="/admin/brand" class="w3-bar-item w3-button w3-padding">  Brand Managemant</a>
+          <a href="/admin/category" class="w3-bar-item w3-button w3-padding">  Category Management</a>
+          <a href="/admin/offer" class="w3-bar-item w3-button w3-padding">  Offer Managemant</a>
+          <a href="/admin/coupon" class="w3-bar-item w3-button w3-padding">  Coupon management</a>
+          <a href="/admin/admin-orders" class="w3-bar-item w3-button w3-padding"> Orders Management</a>
+          <a href="/admin/coupon-history" class="w3-bar-item w3-button w3-padding">  Coupon history</a><br><br>
         </div>
       </nav>
       
@@ -177,7 +182,7 @@
         </div>
         <div class="w3-quarter">
           <div class="w3-container w3-blue w3-padding-16">
-            <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
+            <div class="w3-left"></div>
             <div class="w3-right">
               <h3><%=productcount %></h3>
             </div>
@@ -187,7 +192,7 @@
         </div>
         <div class="w3-quarter">
           <div class="w3-container w3-teal w3-padding-16">
-            <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+            <div class="w3-left"></div>
             <div class="w3-right">
               <h3><%=ordercount %></h3>
             </div>
@@ -197,7 +202,7 @@
         </div>
         <div class="w3-quarter">
           <div class="w3-container w3-orange w3-text-white w3-padding-16">
-            <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+            <div class="w3-left"></div>
             <div class="w3-right">
               <h3>$ <%=revenue %></h3>
             </div>
@@ -207,21 +212,21 @@
         </div>
       </div>
     <!--------------------------------------------Charts--------------------------------------------->
-    <!-- <div class="chartCard">
-        <h2 style="position:absolute;top: 15rem;left: 4rem;font-size: 24px;">Payments</h2>
+    <div class="chartCard">
+        <!-- <h2 style="margin-left:300px;position:absolute;top: 15rem;left: 4rem;font-size: 24px;">Payments</h2> -->
         <div class="chartBox" style="top:17rem;left:3rem">
             <canvas id="Chart"></canvas>
         </div>
-        <h2 style="position:absolute;top: 15rem;left: 24rem;font-size: 24px;">Categories</h2>
+        <!-- <h2 style="position:absolute;top: 15rem;left: 24rem;font-size: 24px;">Categories</h2> -->
         <div class="chartBox" style="top:17rem;left:23rem;width:35rem">
             <canvas id="myChart" style="width:100%;"></canvas>
         </div>
 
-        <h2 style="position:absolute;top: 15rem;left: 60rem;font-size: 24px;">User Status</h2>
+        <!-- <h2 style="position:absolute;top: 15rem;left: 60rem;font-size: 24px;">User Status</h2> -->
         <div class="chartBox" style="top:17rem;left:59rem">
             <canvas id="userChart"></canvas>
         </div>
-    </div> -->
+    </div>
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
@@ -243,110 +248,110 @@
             })
         }
 
-        // var xValuesCate = ['Game', 'Editing', 'Office'];
-        // var yValuesCate = '<%=catCounts%>';
-        // const xCategories = yValuesCate.split(',');
-        // const yCategories = xCategories.map((num) => {
-        //     return parseInt(num);
-        // })
-        // var barColorsCate = ["red", "green", "blue", "orange", "brown"];
-        // var xValues = ['COD', 'Online', 'Wallet'];
-        // var yValues = ['<%=codCount%>', '<%=onlineCount%>', '<%=walletCount%>'];
-        // var barColors = [
-        //     "#b91d47",
-        //     "#00aba9",
-        //     "#2b5797",
-        //     "#e8c3b9",
-        //     "#1e7145",
-        //     'rgba(255, 26, 104, 0.2)',
-        //     'violet'
-        // ];
-        // var cate = '<%=uniqueCategories%>'
-        // console.log(typeof (cate));
-        // var x3Values = cate.split(",");
-        // console.log(x3Values, typeof (x3Values));
-        // var x2Values = ['Active', 'Blocked'];
-        // var y2Values = ['<%=activeCount%>', '<%=blockedCount%>'];
-        // var y3Values = '<%=catCounts%>';
-        // var statusColors = ['green', 'red'];
-        // var catColors = ["#00aba9", "#2b5797", "#e8c3b9", "#1e7145"]
+        var xValuesCate = ['Game', 'Editing', 'Office'];
+        var yValuesCate = '<%=catCounts%>';
+        const xCategories = yValuesCate.split(',');
+        const yCategories = xCategories.map((num) => {
+            return parseInt(num);
+        })
+        var barColorsCate = ["red", "green", "blue", "orange", "brown"];
+        var xValues = ['COD', 'Online', 'Wallet'];
+        var yValues = ['<%=codCount%>', '<%=onlineCount%>', '<%=walletCount%>'];
+        var barColors = [
+            "#b91d47",
+            "#00aba9",
+            "#2b5797",
+            "#e8c3b9",
+            "#1e7145",
+            'rgba(255, 26, 104, 0.2)',
+            'violet'
+        ];
+        var cate = '<%=uniqueCategories%>'
+        console.log(typeof (cate));
+        var x3Values = cate.split(",");
+        console.log(x3Values, typeof (x3Values));
+        var x2Values = ['Active', 'Blocked'];
+        var y2Values = ['<%=activeCount%>', '<%=blockedCount%>'];
+        var y3Values = '<%=catCounts%>';
+        var statusColors = ['green', 'red'];
+        var catColors = ["#00aba9", "#2b5797", "#e8c3b9", "#1e7145"]
 
-        // new Chart("Chart", {
-        //     type: "pie",
-        //     data: {
-        //         labels: xValues,
-        //         datasets: [{
-        //             backgroundColor: barColors,
-        //             data: yValues
-        //         }]
-        //     },
-        //     options: {
-        //         title: {
-        //             display: true,
-        //         }
-        //     }
-        // });
+        new Chart("Chart", {
+            type: "pie",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                }
+            }
+        });
 
-        // new Chart("myChart", {
-        //     type: "bar",
-        //     data: {
-        //         labels: xValuesCate,
-        //         datasets: [{
-        //             label: "Categories",
-        //             backgroundColor: barColorsCate,
-        //             data: yCategories
-        //         }]
-        //     },
-        //     options: {
-        //         scales: {
-        //             y: {
-        //                 ticks: {
-        //                     stepSize: 1,
-        //                     beginAtZero: true,
-        //                 },
-        //             },
-        //         },
-        //         legend: { display: false },
-        //         title: {
-        //             display: true,
-        //             text: "World Wine Production 2018"
-        //         }
-        //     }
-        // });
+        new Chart("myChart", {
+            type: "bar",
+            data: {
+                labels: xValuesCate,
+                datasets: [{
+                    label: "Categories",
+                    backgroundColor: barColorsCate,
+                    data: yCategories
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        ticks: {
+                            stepSize: 1,
+                            beginAtZero: true,
+                        },
+                    },
+                },
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: "World Wine Production 2018"
+                }
+            }
+        });
 
-        // new Chart("userChart", {
-        //     type: "pie",
-        //     data: {
-        //         labels: x2Values,
-        //         datasets: [{
-        //             backgroundColor: statusColors,
-        //             data: y2Values
-        //         }]
-        //     },
-        //     options: {
-        //         title: {
-        //             display: true,
-        //             text: "World Wide Wine Production 2018"
-        //         }
-        //     }
-        // });
+        new Chart("userChart", {
+            type: "pie",
+            data: {
+                labels: x2Values,
+                datasets: [{
+                    backgroundColor: statusColors,
+                    data: y2Values
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "World Wide Wine Production 2018"
+                }
+            }
+        });
 
-        // new Chart("categoryChart", {
-        //     type: "doughnut",
-        //     data: {
-        //         labels: x3Values,
-        //         datasets: [{
-        //             backgroundColor: catColors,
-        //             data: y3Values
-        //         }]
-        //     },
-        //     options: {
-        //         title: {
-        //             display: true,
-        //             text: "World Wide Wine Production 2018"
-        //         }
-        //     }
-        // });
+        new Chart("categoryChart", {
+            type: "doughnut",
+            data: {
+                labels: x3Values,
+                datasets: [{
+                    backgroundColor: catColors,
+                    data: y3Values
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "World Wide Wine Production 2018"
+                }
+            }
+        });
 
     </script>
     <script>

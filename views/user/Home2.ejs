@@ -89,27 +89,27 @@
                            </h6>
                         </div>
                         <% if (offers[i].products.Quantity==0) { %>
-                           <div font-size: 14px;class="d-flex justify-content-between">
+                           <div  class="d-flex justify-content-between">
                               <button disabled class="btc_home" onclick="addToCart('<%=products[i]._id%>')">
                                  Add to cart</button>
                                  
 
-                              <button style="font-size: 14px;" type="button" class="btn btn-success"><a
+                              <button type="button" class="btn btn-success"><a
                                     href="/buy-now?id=<%= products[i]._id%>">Buy Now</a></button>
                            </div>
                            <% } else if (isUserLogin) { %>
-                              <div style="font-size: 14px;"class="d-flex justify-content-between">
+                              <div style="font-size: 2px;"class="d-flex justify-content-between">
                                  <button style="padding-left: 2px;padding: 2px;"class="btc_home" onclick="addToCart('<%=offers[i].products._id%>')">
                                     Add to Cart
-                                 <button style="font-size: 14px;" type="button" class="btn btn-success"><a
+                                 <button type="button" class="btn btn-success"><a
                                     href="/buy-now?id=<%= offers[i].products._id%> ">Buy Now</a></button>
                               </div>
                               <% } else {%>
                                  <div class="d-flex justify-content-between">
-                                    <button style="font-size: 14px;" class="btc_home" onclick="addCartButton()">
+                                    <button style="font-size: 2px;" class="btc_home" onclick="addCartButton()">
                                        Add to cart
                                     </button>
-                                    <button style="font-size: 14px;"class="btn btn-success" onclick="addCartButton()">
+                                    <button class="btn btn-success" onclick="addCartButton()">
                                        Buy Now
                                     </button>
                                  </div>
@@ -159,17 +159,17 @@
                         <% if (isUserLogin) { %>
                            <% if (fav?.includes(products[i]._id)) { %>
                               <div class="new">
-                                 <button style="font-size: 14px;" onclick="addToFav('<%=products[i]._id%>')"><i class="fa-solid fa-heart"
+                                 <button onclick="addToFav('<%=products[i]._id%>')"><i class="fa-solid fa-heart"
                                        style="color: rgb(234, 4, 4);" id="<%=products[i]._id%>"></i></button>
                               </div>
                               <% } else {%>
                                  <div class="new">
-                                    <button  style="font-size: 14px;"onclick="addToFav('<%=products[i]._id%>')"><i class="fa-solid fa-heart"
+                                    <button onclick="addToFav('<%=products[i]._id%>')"><i class="fa-solid fa-heart"
                                           id="<%=products[i]._id%>"></i></button>
                                  </div>
                                  <% } %>
                                     <div class="d-flex justify-content-between">
-                                       <button style="font-size: 14px;" class="btc_home" onclick="addToCart('<%=products[i]._id%>')">
+                                       <button class="btc_home" onclick="addToCart('<%=products[i]._id%>')">
                                           Add
                                           to cart</button>
                                        <!-- <a href="/buy-now?id=<%= products[i]._id%> ">
@@ -181,10 +181,10 @@
                                     </div>
                                     <% } else {%>
                                        <div class="d-flex justify-content-between">
-                                          <button style="font-size: 14px;"class="btc_home" onclick="addCartButton()">
+                                          <button class="btc_home" onclick="addCartButton()">
                                              Add to cart
                                           </button>
-                                          <button style="font-size: 14px;" class="btn btn-success" onclick="addCartButton()">
+                                          <button class="btn btn-success" onclick="addCartButton()">
                                              Buy Now
                                           </button>
                                        </div>

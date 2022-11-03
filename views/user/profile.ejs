@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title> Mobkart</title>
+
+    <link rel="stylesheet" type="text/css" href="css/cart.css">
+
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Swal -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <!-- Button -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+    <!-- As a link -->
+    <nav class=" navbar-light bg-light"
+        style="background-color: #449d98;height: 4em; color: white; padding-left: 42em;">
+        <a href="/" style="    float: left;
+        margin-left: -38em;
+        margin-top: 1em;
+        color: white;">Home</a>
+        <a class="navbar-brand" href="/" style="font-size: x-large; font-weight: bold; color: white;">MobKart</a>
+    </nav>
+
+    <!-- <div class="col-md-12 row">
+
+        <div style="background-color: white; width: 25%; height: 20rem; margin: 3rem 0rem 0rem 5rem;" class="col-md-3">
+            <div style="display: flex; padding: 2rem; align-items: center;">
+                <img class="_3X2gOt" height="50px" width="50px" src="images/avatar.svg">
+                <div>
+                    <p
+                        style="font-size: small; margin-left: 2rem; font-weight: 100; display: flex; flex-direction: column;">
+                        Hello,</p>
+                    <p style="padding-left: 2rem; font-size: large;">
+                        <%= user.name %>
+                    </p> -->
+                    <!-- <hr> -->
+                <!-- </div>
+
+            </div> -->
+
+            <!-- <div style="    padding-left: 3rem;">
+                <a style="text-decoration: none;color: #0075ff;" href="/my-orders">
+                    <h3 style="font-size: 17px;">My Orders</h3>
+                </a>
+                <a style="text-decoration: none;color: #0075ff;" href="/my-wishlist">
+                    <h3 style="font-size: 17px;">My Wishlist</h3>
+                </a>
+            </div> -->
+        <!-- </div>
+
+        <div class="col-md-4"
+            style="background-color: white;  width: 40rem;  height: 100%; padding: 2rem; margin: auto;  margin-top: 5rem;border: 1px solid;margin-right: 5rem;">
+
+            <form action="/profile-edit" method="post">
+                <p style="color: red;">
+                    <%= error %>
+                </p>
+                <h3 style="font-size: large; font-weight: 500;">Personal Information</h3>
+                <input type="text" value="<%= user.name %>" style="height: 50px; font-size: 14px; border: 1px solid #d7d2d2; width: 27rem; padding-left: 20px;  outline: none;
+                border-radius: 2px;" name="name">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp -->
+
+                <!-- <input type="text" value="" style="height: 50px; font-size: 14px; border: 1px solid #d7d2d2;     outline: none;
+                border-radius: 2px;"> already commented-->
+                <!-- <br>
+                <h3 style=" font-size: large; font-weight: 500;">Your gender</h3>
+                <% if(user.gender=="Male" ) { %>
+                    <input type="radio" style="margin-top: 4px; " name="gender" value="Male" checked>&nbsp Male &nbsp
+                    <input type="radio" name="gender" value="Female"> &nbsp Female &nbsp <br>
+                    <% } else { %>
+                        <input type="radio" id="rad" style="margin-top: 4px; " name="gender" value="Male">&nbsp Male
+                        &nbsp
+                        <input type="radio" id="rad" value="Female" name="gender" checked> &nbsp Female &nbsp <br>
+                        <% } %>
+                            <h3 style="    font-size: large;font-weight: 500;">Email address</h3>
+                            <input type="email"
+                                style="height: 50px; font-size: 14px; border: 1px solid #d7d2d2; width: 27rem;    padding-left: 20px;  outline: none; border-radius: 2px;"
+                                placeholder="<%= user.email %>" name="email" value="<%= user.email %>">
+
+                            <h3 style="    font-size: large; font-weight: 500;">Mobile Number</h3>
+                            <input type="text"
+                                style="height: 50px; font-size: 14px; border: 1px solid #d7d2d2;  padding-left: 20px;  outline: none; border-radius: 2px;"
+                                placeholder="<%= user.number %>" name="number" value="<%= user.number %>">
+
+                            <button type="submit"
+                                style=" background-color: #4f27f9; color: white; margin-left: .5rem; width: 7rem; height: 3rem; border-radius: 7px; border: 1px solid;">Save</button>
+
+            </form> -->
+
+        <!-- </div>
+        <div class="col-md-4"
+            style="background-color: white;  width: 37rem;  height: 100%; padding: 2rem; margin: auto;  margin-top: 5rem; border: 1px solid;padding-bottom: 4rem;">
+            <form action="/password-change" method="post">
+                <p style="color: red;">
+                    <%= passworderror %>
+                </p>
+                <h3 style="font-size: large; font-weight: 500;">Old Password</h3>
+                <input type="password" value="" style="height: 50px; font-size: 14px; border: 1px solid #d7d2d2; width: 27rem; padding-left: 20px;  outline: none;
+                border-radius: 2px;" name="oldpswd">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                <br>
+                <h3 style="    font-size: large;font-weight: 500;">New Password</h3>
+                <input type="password"
+                    style="height: 50px; font-size: 14px; border: 1px solid #d7d2d2; width: 27rem;    padding-left: 20px;  outline: none; border-radius: 2px;"
+                    placeholder="" name="newpswd" value="">
+                <h3 style="    font-size: large;font-weight: 500;">Confirm Password</h3>
+                <input type="password"
+                    style="height: 50px; font-size: 14px; border: 1px solid #d7d2d2; width: 27rem;    padding-left: 20px;  outline: none; border-radius: 2px;"
+                    placeholder="" name="confirmpswd" value="">
+                <br><br>
+                <button type="submit"
+                    style=" background-color: #4f27f9; color: white; width: 27rem; height: 3rem; border-radius: 7px; border: 1px solid;">Change
+                    Password</button>
+
+            </form>
+        </div> -->
+
+
+        <!-- <br><br><br> -->
+        <!-- <div class="col-md-12"
+            style="background-color: white;    height: 100%; padding: 2rem 9rem; margin: auto;  margin-top: 3rem;">
+
+            <h3 style=" font-size: large; font-weight: 500;"> FAQs </h3>
+            <p> What happens when I update my email address (or mobile number)?</p>
+            <p> Your login email id (or mobile number) changes, likewise. You'll receive all your account related
+                communication on your updated email address (or mobile number).</p>
+
+            <p> When will my account be updated with the new email address (or mobile number)?</p>
+            <p> It happens as soon as you confirm the verification code sent to your email (or mobile) and save the
+                changes.</p>
+
+            <p> What happens to my existing account when I update my email address (or mobile number)?</p>
+            <p> Updating your email address (or mobile number) doesn't invalidate your account. Your account remains
+                fully functional. You'll continue seeing your Order history, saved information and personal details.</p>
+
+            <p> Does my Seller account get affected when I update my email address?</p>
+            <p> Ckart has a 'single sign-on' policy. Any changes will reflect in your Seller account also.</p>
+
+        </div> -->
+
+    <!-- </div> -->
+
+
+
+
+    <div class="container">
+        <div class="main-body">
+            <form action="/profile-edit" method="post">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+                                <div class="mt-3">
+                                    <h4><%= user.name %></h4>
+                                    <p class="text-secondary mb-1">Full Stack Developer</p>
+                                    <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                                    <button class="btn btn-primary" href="/my-orders">My orders</button>
+                                    <button class="btn btn-outline-primary" href="/my-wishlist">My Wishlist</button>
+                                </div>
+                            </div>
+                            <hr class="my-4">
+                            <!-- <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe me-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
+                                    <span class="text-secondary">https://bootdey.com</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github me-2 icon-inline"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>Github</h6>
+                                    <span class="text-secondary">bootdey</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter me-2 icon-inline text-info"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>Twitter</h6>
+                                    <span class="text-secondary">@bootdey</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram me-2 icon-inline text-danger"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>Instagram</h6>
+                                    <span class="text-secondary">bootdey</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook me-2 icon-inline text-primary"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>Facebook</h6>
+                                    <span class="text-secondary">bootdey</span>
+                                </li>
+                            </ul> -->
+                        </div>
+                    </div>
+                </div>
+                
+                    <p style="color: red;">
+                        <%= error %>
+                    </p>
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" name="name" class="form-control" value="<%= user.name %>">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                                </div>
+                            </div>
+                            <div class="row mb-3" style="margin-left: 200px;">
+                            <h3 style=" font-size: large; font-weight: 500;">Your gender</h3>
+                           <% if(user.gender=="Male" ) { %>
+                                 <input type="radio" style="margin-top: 4px; " name="gender" value="Male" checked>&nbsp Male &nbsp
+                                <input type="radio" name="gender" value="Female"> &nbsp Female &nbsp <br>
+                            <% } else { %>
+                                <input type="radio" id="rad" style="margin-top: 4px; " name="gender" value="Male">&nbsp Male
+                               &nbsp
+                              <input type="radio" id="rad" value="Female" name="gender" checked> &nbsp Female &nbsp <br>
+                                <% } %>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Email</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="email" name="email" class="form-control" placeholder="<%= user.email %>" value="<%= user.email %>">
+                                </div>
+                            </div>
+                           
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Mobile</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" class="form-control" placeholder="<%= user.number %>" name="number" value="<%= user.number %>">
+                                </div>
+                            </div>
+                           
+                            <div class="row">
+                                <div class="col-sm-3"></div>
+                                <button class="btn btn-primary" type="submit">save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                
+                    
+                </div>
+            </form>
+            </div>
+        </div>
+    <form action="/password-change" method="post">  
+        <p style="color: red;">
+            <%= passworderror %>
+        </p>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Old Password</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <input type="password" value="" 
+                         name="oldpswd">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">New Password</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <input type="password" placeholder="" name="newpswd" value="">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Confim Password</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <input type="password" placeholder="" name="confirmpswd" value="">
+                    </div>
+                </div>
+               
+                
+               
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <button class="btn btn-primary" type="submit">Change password</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+    
+    <style>
+        body{
+        background: #f7f7ff;
+        margin-top:20px;
+    }
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid transparent;
+        border-radius: .25rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+    }
+    .me-2 {
+        margin-right: .5rem!important;
+    }
+    </style>
+</body>
+<script>
+    function changePassword() {
+        document.getElementById("changePassword").style.display = 'block';
+    }
+</script>
+
+</html>

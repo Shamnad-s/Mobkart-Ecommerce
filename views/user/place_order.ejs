@@ -40,81 +40,72 @@
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 </head>
-<!-- body -->
 
-<body class="main-layout inner_posituong computer_page" style="margin: 0;">
-    <!-- loader  -->
+<body class="main-layout inner_posituong computer_page">
     <nav class=" navbar-light " style="background-color: #449d98;height: 4em; color: white; padding-left: 42em;">
         <a href="/" style="float: left;margin-left: -38em;margin-top: 1em;color: white;">Home</a>
         <a class="navbar-brand" href="/"
-            style="font-size: xx-large;font-weight: bold;color: white;position: absolute;left: 35rem;padding-top: 1rem;align-items: center;">CKart</a>
+            style="font-size: xx-large;font-weight: bold;color: white;position: absolute;left: 39rem;padding-top: 1rem;align-items: center;">MobKart</a>
     </nav>
     <!-- loader  -->
     <div class="loader_bg">
-        <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+        <div class="loader"></div>
     </div>
     <!-- end loader -->
     <header>
-        <!-- header inner -->
         <div class="header">
-            <div class="container-fluid">
+            <div class="container-fluid card-body">
                 <div class="row">
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                        <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false"
-                                aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                        </nav>
-                    </div>
                     <div class="contact">
                         <div class="container">
+                            <div class="card-header py-3 d-flex justify-content-center">
+                                <h1 class="mb-0">Biling details</h1>
+                              </div>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="titlepage">
-                                        <h2 style="margin-left: 28rem;">Delivery Details</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-8">
+                                <div style="margin-left: 200px;" class="col-md-8 mb-4 border border-dark">
                                     <form id="request" class="main_form" action="">
                                         <div class="row">
                                             <div class="col-md-12 ">
-                                                <input class="contactus" type="text" placeholder="Name"
+                                                <label class="form-label" for="form7Example1">First name</label>
+                                                <input class="contactus form-outline"  type="type"
                                                     oninput="namevalid()" id="fname" name="Name">
+                                                    
                                                 <p class="help-block" id="pname"></p>
                                             </div>
                                             <div class="col-md-12">
-                                                <input class="contactus" placeholder="Phone Number" oninput="numvalid()"
+                                                <label class="form-label" for="form7Example3">Phone Number</label>
+                                                <input class="contactus form-outline" oninput="numvalid()"
                                                     id="fnum" type="text" name="mobile">
                                                 <p class="help-block" id="pnum"></p>
-                                                <input type="text" name="userId" id="" value="<%=user._id%>" hidden>
+                                                <input type="text" name="userId" id="" value="<%=user?._id%>" hidden>
                                             </div>
                                             <div class="col-md-12">
+                                                <label class="form-label" for="form7Example3">Pin code</label>
+                                               
                                                 <input type="text" name="total" id="tot" value="<%=total%>" hidden>
-                                                <input class="contactus" placeholder="Pincode" oninput="pinvalid()"
+                                                <input class="contactus form-outline" oninput="pinvalid()"
                                                     id="fpin" type="type" name="Pincode">
                                                 <p class="help-block" id="ppin"></p>
                                             </div>
                                             <div class="col-md-12">
-                                                <textarea class="textarea" placeholder="Address" id="faddress"
+                                                <label class="form-label" for="form7Example3">Address</label>
+                                                <textarea  class="form-control border border-dark"  id="faddress"
                                                     oninput="addressvalid()" type="type" name="address"
                                                     Message="Name"></textarea>
                                                 <p class="help-block" id="paddress"></p>
                                             </div>
                                             <div class="col-md-10">
                                             </div>
-                                            <div class="col-md-2">
-                                                <button class="send_btn" type="button"
-                                                    style="font-size:11px; font-size: 11px;margin-top: 0px;position: absolute;right: 1rem;height: 2em;padding: 0.1rem 1rem 1rem 1rem;bottom: 1.1rem; border-radius: 0%;"
-                                                    onclick="namevalid();numvalid();pinvalid();addressvalid();saveAddress(document.getElementById('fname').value,document.getElementById('fnum').value,document.getElementById('fpin').value,document.getElementById('faddress').value)">save
-                                                    address
+                                            <div class="col-md-2 justify-content-center">
+                                                <button class="d-flex justify-content-center btn btn-primary" type="button"
+                                                   style=" margin-top: 20px;
+                                                   justify-content: center;
+                                                   align-items: center;" onclick="namevalid();numvalid();pinvalid();addressvalid();saveAddress(document.getElementById('fname').value,document.getElementById('fnum').value,document.getElementById('fpin').value,document.getElementById('faddress').value)">save address
                                                 </button>
                                             </div>
+                                            
                                             <div class="col-md-5">
-                                                <label for="payment">Payment method </label><br>
+                                                <label for="payment" style="font-weight:700">Payment method </label><br>
                                                 <div class="radio inline">
                                                     <input type="radio" id="radio-2" name="payment-method" value="COD" oninput="checkwallet(document.getElementById('tot').value)"
                                                         >
@@ -131,45 +122,23 @@
                                                     <label for="radio-4">CKart Wallet</label>
                                                 </div>
                                                 <p class="help-block" id="pwallet"></p>
+                                                <div class="col-md-7 mt-1">
+                                                    <button class="btn btn-success" type="submit"
+                                                        onclick="namevalid();numvalid();pinvalid();addressvalid();"
+                                                        id="submit_btn">Checkout</button>
+                                                </div>
                                             </div>
-                                            <div class="col-md-7 mt-1">
-                                                <button class="send_btn" type="submit"
-                                                    onclick="namevalid();numvalid();pinvalid();addressvalid();"
-                                                    id="submit_btn">Checkout</button>
-                                            </div>
-                                            <span>
-                                                <div class="col-md-12">
-                                                    <label for="address" style="font-weight:700">Saved Address :
-                                                    </label><br>
-                                                    <% for (let i=0; i < address.length; i++) { %>
-                                                        <div class="radio inline">
-                                                            <input type="radio" id="<%=address[i]._id %>"
-                                                                name="savedAddress" value=""
-                                                                onclick="fillAddress('<%=address[i].name %>','<%=address[i].phone %>','<%=address[i].pincode %>','<%=address[i].address%>')">
-                                                            <label for="" style="font-size: 16px;">
-                                                                <%=address[i].name %>
-                                                            </label> <br>
-                                                            <label for="" style="font-size: 16px;padding-left: 20px;">
-                                                                <%=address[i].phone %>
-                                                            </label> <br>
-                                                            <label for="" style="font-size: 16px;padding-left: 20px;">
-                                                                <%=address[i].pincode %>
-                                                            </label> <br>
-                                                            <label for="" style="font-size: 16px;padding-left: 20px;">
-                                                                <%=address[i].address %>
-                                                            </label> <br>
-                                                        </div>
-                                                        <% } %>
-                                            </span>
-                                            </p>
+                                           
+                                            
+                                            
                                         </div>
                                         </span>
                                 </div>
                                 </form>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4" style="margin-left: 200px;">
                                 <div class="card-body"
-                                    style="border: 2px solid #4843a3; margin-bottom:1rem;width:27rem">
+                                    style="border: 2px solid #05040a; margin-bottom:1rem;width:27rem">
                                     <form>
                                         <div class="form-group"> <label>Have coupon?</label><br><br>
                                             <div class="input-group">
@@ -183,22 +152,50 @@
                                             </div>
                                             <p class="help-block" id="pcoupon"></p>
                                         </div>
+
                                     </form>
                                     <p id="errorCoupon" style="color: red; display: none;"></p>
                                 </div>
-                                <div class="card-body" style="border: 2px solid #4843a3;width:27rem">
+                                <form action="" id="buyrequest">
+                                <div class="card-body" style="border: 2px solid #05040a;width:27rem">
                                     <h3>Price : $ <%=total%>
                                     </h3>
                                     <h3 id="discountPrice">Discount : $ 0</h3>
                                     <hr>
                                     <h3 id="totalShow" style="font-weight:500">Total : $ <%=total%>
                                     </h3>
+                                    
                                 </div>
+                            </form>
+                                <span>
+                                    <div class="col-md-12">
+                                        <label for="address" style="font-weight:700">Saved Address :
+                                        </label><br>
+                                        <% for (let i=0; i < address.length; i++) { %>
+                                            <div class="radio inline">
+                                                <input type="radio" id="<%=address[i]._id %>"
+                                                    name="savedAddress" value=""
+                                                    onclick="fillAddress('<%=address[i].name %>','<%=address[i].phone %>','<%=address[i].pincode %>','<%=address[i].address%>')">
+                                                <label for="" style="font-size: 16px;">
+                                                    <%=address[i].name %>
+                                                </label> <br>
+                                                <label for="" style="font-size: 16px;padding-left: 20px;">
+                                                    <%=address[i].phone %>
+                                                </label> <br>
+                                                <label for="" style="font-size: 16px;padding-left: 20px;">
+                                                    <%=address[i].pincode %>
+                                                </label> <br>
+                                                <label for="" style="font-size: 16px;padding-left: 20px;">
+                                                    <%=address[i].address %>
+                                                </label> <br>
+                                            </div>
+                                            <% } %>
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- end footer -->
+               
                 <script>
 
                     function fillAddress(name, phone, pin, address) {
@@ -317,6 +314,7 @@
                 <script src="js/popper.min.js"></script>
                 <script src="js/bootstrap.bundle.min.js"></script>
                 <script src="js/custom.js"></script>
+                <!-- Ajax Add to cart -->
                 <script src="js/cartAjax.js"></script>
 </body>
 

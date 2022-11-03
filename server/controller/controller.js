@@ -206,6 +206,68 @@ exports.search = (req, res) => {
             res.render('admin/admin_home', { users: data })
         })
 }
+exports.profileEdit = async (req, res) => {
+    try {
+        const userObj = {
+            name: req.body.name,
+            email: req.body.email,
+            gender: req.body.gender,
+            number: req.body.number
+        }
+        const userId = req.session.user._id;
+        const { error } = editValidate(userObj);
+        if (error) {
+            console.log("If error", error);
+            req.session.error = error.details[0].message
+            return res.redirect('/profileError')
+        }
+        console.log("Else");
+        const user = await Userdb.updateOne({ _id: ObjectId(userId) }, { $set: userObj })
+        const userDb = await Userdb.findById(userId);
+        req.session.user = userDb;
+        console.log(user);
+        req.session.error = ""
+        res.redirect('/')
+
+    } catch (err) {
+        console.log(err);
+        res.send("Error During creating user: " + err.message)
+    }
+}
+
+exports.passwordChange = async (req, res) => {
+    try {
+        const userDb = await Userdb.findById(req.session.user._id);
+        if (req.body.oldpswd) {
+            bcrypt.compare(req.body.oldpswd, userDb.password).then((status) => {
+                if (status) {
+                    if (req.body.newpswd === req.body.confirmpswd) {
+                        bcrypt.hash(req.body.newpswd, 10).then((newpassword) => {
+                            Userdb.updateOne({ _id: req.session.user._id }, { password: newpassword }).then(() => {
+                                Userdb.findById(req.session.user._id).then((user) => {
+                                    req.session.user = user;
+                                    res.redirect('/')
+                                })
+                            })
+                        })
+                    } else {
+                        req.session.passwordError = "Password doesn't match";
+                        res.redirect('/pswdChangeErr')
+                    }
+                } else {
+                    req.session.passwordError = "Your Old password is wrong";
+                    res.redirect('/pswdChangeErr')
+                }
+            })
+        } else {
+            req.session.passwordError = "Please enter your old password";
+            res.redirect('/pswdChangeErr')
+        }
+    } catch (err) {
+        console.log(err);
+        res.send("Error During creating user: " + err.message)
+    }
+}
 // Block and Unblock User
 exports.block = async (req, res) => {
     try {
