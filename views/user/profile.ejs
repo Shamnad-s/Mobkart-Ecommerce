@@ -42,7 +42,7 @@
                         style="font-size: small; margin-left: 2rem; font-weight: 100; display: flex; flex-direction: column;">
                         Hello,</p>
                     <p style="padding-left: 2rem; font-size: large;">
-                        <%= user.name %>
+                        
                     </p> -->
                     <!-- <hr> -->
                 <!-- </div>
@@ -155,18 +155,18 @@
     <div class="container">
         <div class="main-body">
             <form action="/profile-edit" method="post">
-            <div class="row">
-                <div class="col-lg-4">
+            <div class="row" style="margin-top:40px ;">
+                <div class="col-lg-4"  style="padding: 30px;">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body" style="padding: 20px;">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110" >
                                 <div class="mt-3">
                                     <h4><%= user.name %></h4>
-                                    <p class="text-secondary mb-1">Full Stack Developer</p>
-                                    <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                                    
+                                  
                                     <button class="btn btn-primary" href="/my-orders">My orders</button>
-                                    <button class="btn btn-outline-primary" href="/my-wishlist">My Wishlist</button>
+                                    <button class="btn btn-outline-primary" href="/user-fav">My Wishlist</button>
                                 </div>
                             </div>
                             <hr class="my-4">
@@ -200,7 +200,7 @@
                         <%= error %>
                     </p>
                 <div class="col-lg-8">
-                    <div class="card">
+                    <div class="card" style="padding: 30px;">
                         <div class="card-body">
                             <div class="row mb-3">
                                 <div class="col-sm-3">
@@ -234,12 +234,12 @@
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Mobile</h6>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
+                                <div class="col-sm-9 text-secondary" style="margin-top: 10px;">
                                     <input type="text" class="form-control" placeholder="<%= user.number %>" name="number" value="<%= user.number %>">
                                 </div>
                             </div>
                            
-                            <div class="row">
+                            <div class="row" style="margin-top: 5px; margin-left:3px">
                                 <div class="col-sm-3"></div>
                                 <button class="btn btn-primary" type="submit">save changes</button>
                             </div>
@@ -257,7 +257,7 @@
         </p>
     <div class="col-lg-8">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" style="padding: 20px;">
                 <div class="row mb-3">
                     <div class="col-sm-3">
                         <h6 class="mb-0">Old Password</h6>
@@ -287,7 +287,7 @@
                
                 
                
-                <div class="row">
+                <div class="row" style="margin-left: 8px ;">
                     <div class="col-sm-3"></div>
                     <button class="btn btn-primary" type="submit">Change password</button>
                 </div>

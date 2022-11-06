@@ -19,6 +19,7 @@ exports.create =async (req,res)=>{
 
 exports.updatepage =async (req,res)=>{
     const brand = await brandDb.findOne({_id:req.query.id})
+    
     res.render('admin/brand_update',{error:"",brand})
 }
 
@@ -29,6 +30,7 @@ exports.update = async (req,res)=>{
         res.redirect('/admin/editBrandErr')
     }else{
     const brand = await brandDb.findOne({_id:id}) 
+    console.log(brand);
     await brandDb.findByIdAndUpdate(id,req.body,{useFindAndModify:false})
     await productDb.updateMany({"Brand": brand.name},{$set:{"Brand": req.body.name}})
         res.redirect('/admin/brand')
@@ -39,6 +41,7 @@ exports.delete = async (req,res)=>{
     const id = req.params.id;
     const brand = await brandDb.findOne({_id:id})
     await brandDb.findByIdAndDelete(id)
-    await productDb.deleteMany({"Brand": brand.name})
+    k = await productDb.deleteMany({"Brand": brand.name})
+    console.log(k)
     res.redirect('/admin/brand')
 }

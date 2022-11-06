@@ -5,7 +5,7 @@ const brandDb = require('../model/brandModel')
 const cartDb = require('../model/cartModel')
 const Joi = require('joi');
 
-// --------------------------------------------- New Product -----------------------------------------------
+//New Product 
 exports.create = async(req,res)=>{
             let images = []
             if(req.files?.Image1){images.push(req.files?.Image1)}

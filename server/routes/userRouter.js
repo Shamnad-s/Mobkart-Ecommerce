@@ -1,8 +1,9 @@
 const express = require("express");
 const userRoute = express.Router();
-const cartcontroller = require('../controller/CartController');
 const orderDb = require('../model/orderModel');
 const productDb = require("../model/productModel");
+const cartcontroller = require('../controller/CartController');
+
 const favController = require("../controller/favController");
 const controller = require("../controller/controller");
 const savedController = require("../controller/savedController");
@@ -44,7 +45,7 @@ userRoute.get('/place-order', orderController.myOrders)
 
 userRoute.post('/place-order/:price', orderController.orderPlacing)
 
-// userRoute.post('/verify-payment', orderController.paymentVerification)
+userRoute.post('/verify-payment', orderController.paymentVerification)
 // log in with mobile number
 userRoute.get("/loginotp", (req, res) => {
     if (req.session.isUserLogin) {

@@ -8,15 +8,15 @@ const cartDb = require('../model/cartModel')
 const userDb = require('../model/model')
 const crypto = require('crypto');
 
-// const Razorpay = require('razorpay');
-const { string } = require('joi');
+const Razorpay = require('razorpay');
+const { string } = require('joi'); 
 
-// var instance = new Razorpay({
-//     key_id: 'rzp_test_GHZ8qfO5RgHRDG',
-//     key_secret: '96OZZd2cbBqVjnR6ZLeQrGOU',
-//     });
+var instance = new Razorpay({
+    key_id: 'rzp_test_lVOl3OlIGN7MEp',
+    key_secret: 'vantsjoFu2XeePP0ftwBe9WG',
+    });
 
-//My Orders
+// My Orders 
 exports.Find = async (req,res)=>{
     const userId = req.session.user?._id
     const orderDetails = await orderDb.aggregate([
@@ -53,7 +53,7 @@ exports.Find = async (req,res)=>{
             }
     res.render('user/my_orders',{orderDatas:orderDetails,cartCount,isUserLogin:req.session.isUserLogin})
 }
-// Orders in admin side
+//Orders in admin side
 exports.find = async (req,res)=>{
     const orderDetails = await orderDb.aggregate([
         
@@ -91,7 +91,7 @@ exports.statusUpdate = async(req, res) => {
     res.json(true);
 }
 
-//Cancel Orders  
+//Cancel Orders
 exports.cancel = async(req,res)=>{
         const id = req.params.id;
         const user = req.session.user;
@@ -133,7 +133,7 @@ exports.cancelOrder = async(req,res)=>{
     res.redirect('/admin/admin-orders')
 }
 
-// Order from Cart 
+// Order from Cart
 exports.myOrders = async(req,res)=>{
     const userId = req.session.user?._id;
     let offerPrice = await cartDb.aggregate([
@@ -237,7 +237,7 @@ exports.myOrders = async(req,res)=>{
     res.render('user/place_order',{address,error:"",total,user:req.session.user})
 }
 
-// Buy now 
+//Buy now  
 exports.buynowPage = async (req, res)=>{
     const user = req.session.user;
     const product = req.query.id;
@@ -310,7 +310,7 @@ exports.buynow = async (req, res)=>{
     }
 }
 
-//Order Placing 
+//Order Placing
 exports.orderPlacing = async(req,res)=>{
     const userId = req.body.userId
     let cart = await cartDb.findOne({user:ObjectId(userId)});
@@ -456,15 +456,31 @@ exports.orderPlacing = async(req,res)=>{
                 }
             // }
 }
-//Payment Verification 
-// exports.paymentVerification = async(req, res)=>{
-//     let hmac = crypto.createHmac('sha256', '96OZZd2cbBqVjnR6ZLeQrGOU');
-//     hmac.update(req.body.payment.razorpay_order_id+'|'+req.body.payment.razorpay_payment_id);
-//     hmac = hmac.digest('hex')
-// if(hmac==req.body.payment.razorpay_signature){
+//  Payment Verification 
+// exports.paymentVerification = async(req, res,err)=>{
+//     console.log(req.body)
+//     let hmac = crypto.createHmac('sha256', 'vantsjoFu2XeePP0ftwBe9WG');
+//     hmac.update(req.body["payment[razorpay_payment_id]"]+'|'+req.body["payment[razorpay_order_id]"]);
+//     const generated_signature = hmac.digest('hex')
+ 
+//     console.log(typeof generated_signature)
+//     console.log(typeof req.body['payment[razorpay_signature]'])
+// if(generated_signature == req.body['payment[razorpay_signature]']){
 //     res.json({status:true})
 // }else{
 //     console.log(err);
 //     res.json({status: false,errMsg:''})
 // }
 // }
+
+exports.paymentVerification = async(req, res)=>{
+    let hmac = crypto.createHmac('sha256', 'vantsjoFu2XeePP0ftwBe9WG');
+    hmac.update(req.body.payment.razorpay_order_id+'|'+req.body.payment.razorpay_payment_id);
+    hmac = hmac.digest('hex')
+if(hmac==req.body.payment.razorpay_signature){
+    res.json({status:true})
+}else{
+    console.log(err);
+    res.json({status: false,errMsg:''})
+}
+}

@@ -32,7 +32,10 @@ exports.addBanner = async (req, res) => {
                 description:req.body.description,
                 image:imgPath
             }
+            console.log(bannerObj)
+            
             const banner = new bannerDb(bannerObj);
+            console.log(banner)
             await banner.save()
             res.redirect('/admin/banner')
         }
@@ -67,6 +70,7 @@ exports.update = async (req, res)=>{
 
 exports.deleteBanner = async (req,res)=>{
     const id = req.params.id;
+    console.log(id)
     await bannerDb.findByIdAndDelete(id)
     res.redirect('/admin/banner')
 }
