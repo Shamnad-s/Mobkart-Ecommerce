@@ -38,6 +38,10 @@
             <div class="products">
                 <% if (cartItems.length==0) { %>
                     <h2>Cart is Empty</h2>
+                    <div>
+                        <img style=" margin: 4rem 0rem 0rem 30rem;  height: 33rem;  width: 33rem;" src="images/empty-cart-illustration-512x428-mcol2auz.png">
+                    </div>
+                    
                     <% } else { %>
                         <% for ( let i=0; i < cartItems.length; i++) { %>
                             <div class="product">
@@ -177,6 +181,7 @@
     </div>
     <% } %>
 
+    
 </body>
 <script>
     function changeQuantity(cartId, proId, userId, count) {

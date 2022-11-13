@@ -22,22 +22,22 @@
             </div>
             <div class="prodetail">
                <div class="titlepage">
-                  <h2>
+                  <h3>
                      <%= products.Name %>
-                  </h2>
-                  <h1 style="text-decoration: line-through; opacity: 50%; font-size:1rem; color:red; padding:0">$ <%=
+                  </h3>
+                  <h3 style="text-decoration: line-through; opacity: 50%; font-size:1rem; color:red; padding:0">$ <%=
                         products.Price %>
-                  </h1>
-                  <h1>$<%=offerPrice %>
-                  </h1>
-                  <h1>Brand : <%= products.Brand %>
-                  </h1>
-                  <h1>Type : <%= products.Category %>
-                  </h1>
+                  </h3>
+                  <h3>$<%=offerPrice %>
+                  </h3>
+                  <h3>Brand : <%= products.Brand %>
+                  </h3>
+                  <h3>Type : <%= products.Category %>
+                  </h3>
                   <h3>Description</h3>
-                  <p>
+                  <h4>
                      <%= products.Description %>
-                  </p>
+                  </h4>
                </div>
             </div>
             <% if (products.Quantity==0) { %>
@@ -46,20 +46,25 @@
                </div>
                <% } else if (isUserLogin) { %>
                   <div class="col-md-7 pt-5" style="margin-left: 11%;">
-                     <button onclick="addToCart('<%=products._id%>')" class="btc_home" style="margin-left: 13.5rem;">
+                     <button onclick="addToCart('<%=products._id%>')" class="btn btn-warning" style="margin-left: 13.5rem;">
                         Add to cart</button>
-                        <a href="/buy-now?id=<%= products._id%> ">
-                           <h3 class="atc_home" style="margin-left: 13.5rem;">Buy Now</h3>
-                        </a>
-                     </div>
+                     <!-- <a href="/buy-now?id=<%= products._id%> ">
+                        <h3 class="atc_home" style="margin-left: 13.5rem;">Buy Now</h3>
+                     </a> -->
+                     <button type="button" class="btn btn-success ml-3"><a style="color: black;"
+                        href="/buy-now?id=<%= products._id%> ">Buy Now</a></button>
+                  </div>
                      <% } else {%>
                         <div class="col-md-7 pt-5" style="margin-left: 11%;">
-                           <button class="btc_home" onclick="addCartButton()" style="margin-left: 13.5rem;">
+                           <button class="btn btn-warning" onclick="addCartButton()" style="margin-left: 13.5rem;">
                               Add to cart
                            </button>
-                           <a onclick="addCartButton()">
+                           <!-- <a onclick="addCartButton()">
                               <h3 class="atc_home" style="margin-left: 13.5rem;">Buy Now</h3>
-                           </a>
+                           </a> -->
+                           <button class="btn btn-success ml-3" onclick="addCartButton()">
+                              Buy Now
+                           </button>
                         </div>
                      <% } %>
          </div>

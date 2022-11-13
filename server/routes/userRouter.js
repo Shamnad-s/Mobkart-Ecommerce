@@ -3,7 +3,7 @@ const userRoute = express.Router();
 const orderDb = require('../model/orderModel');
 const productDb = require("../model/productModel");
 const cartcontroller = require('../controller/CartController');
-
+const couponController = require('../controller/couponController');
 const favController = require("../controller/favController");
 const controller = require("../controller/controller");
 const savedController = require("../controller/savedController");
@@ -56,6 +56,8 @@ userRoute.get("/loginotp", (req, res) => {
 userRoute.post("/mobile", otpcontroller.mobileNum);
 // Add to cart
 userRoute.get("/add-to-cart:id", cartcontroller.addToCart)
+// Coupon 
+userRoute.post("/applycoupon/:coupon/:total", couponController.applyCoupon)
 //  Favorites 
 userRoute.post("/add-to-fav:id", favController.fav)
 

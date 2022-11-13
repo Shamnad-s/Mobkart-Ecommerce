@@ -131,13 +131,13 @@ table{
     color: white;
     width: 100%;
     padding: 1rem;
-    background-color: #4C45CF;
+    background-color: #449d98;
     border: none;
     border-radius: 2rem;
     margin: .5rem 0;
 }
 .save_btn:hover{
-    background-color: #413baf;
+    background-color: #449d98;
 }
 .filter{
     color: #4C45CF;

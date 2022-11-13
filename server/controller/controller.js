@@ -41,6 +41,7 @@ exports.landing = async (req, res) => {
                 }
             }
         ])
+        console.log(offers)
         if (req.session.isUserLogin) {
             let cartCount = 0
             let cart = await cartDb.findOne({ user: req.session.user._id })
@@ -137,6 +138,7 @@ exports.find = async (req, res) => {
             res.status(200).render('admin/dashboard')
         } else {
             const admin = await adminDb.findOne({ email: req.body.email, password: req.body.password })
+            console.log(admin)
             if (admin) {
                 req.session.admin = req.body.email;
                 req.session.isAdminLogin = true;

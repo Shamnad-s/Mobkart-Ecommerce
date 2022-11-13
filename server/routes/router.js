@@ -2,7 +2,6 @@ const express = require("express");
 const route = express.Router();
 const brandDb = require("../model/brandModel");
 const offerDb = require("../model/offerModel");
-
 const productDb = require("../model/productModel");
 const categoryDb = require("../model/categoryModel");
 const controller = require("../controller/controller");
@@ -12,7 +11,7 @@ const offerController = require("../controller/offerController");
 const orderController = require("../controller/orderController");
 const brandController = require("../controller/brandController");
 const bannerController = require("../controller/bannerController");
-
+const couponController = require("../controller/couponController");
 const productController = require("../controller/productController");
 const objectId = require("mongoose").Types.ObjectId;
 
@@ -150,6 +149,36 @@ route.get("/editBrandErr", async (req, res) => {
 });
 
 route.delete("/delete-brand/:id", brandController.delete);
+//Coupons 
+
+route.get("/coupon", couponController.showcoupons);
+
+route.get("/coupon-history", couponController.showHistory);
+
+route.patch("/coupon-status/:id", couponController.status);
+
+route.get("/coupon-add", couponController.adding);
+route.post("/coupon-add", couponController.addCoupon);
+
+route.get("/couponAddErr", async (req, res) => {
+    const error = req.session.error;
+    req.session.error = null;
+    return res.render("admin/coupon_add", { error });
+});
+
+route.get("/coupon-update/:id", couponController.editCoupon);
+route.put("/coupon-update/:id", couponController.update);
+
+route.get("/couponEditErr", async (req, res) => {
+    const error = req.session.error;
+    const id = req.session.couponId;
+    req.session.error = null;
+    req.session.couponId = null;
+    const coupon = await couponDb.findOne({ _id: id });
+    return res.render("admin/coupon_update", { error, coupon });
+});
+
+route.delete("/coupon-delete/:id", couponController.delete);
 
 //Category 
 

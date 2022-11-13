@@ -9,30 +9,18 @@ const { v4: uuidv4 } = require("uuid");
 // const hbs = require("express-handlebars");
 const mongoose = require('mongoose');
 const methodOverride = require("method-override");
-
-
-
 const session = require('express-session');
-
-
 const app = express();
-
-
 const port = 3000
 
 
-
-
-
-mongoose.connect('mongodb://localhost:27017/lightkart',(err)=>{
+mongoose.connect(`mongodb://${process.env.MONGOURL || 'localhost:27017/lightkart' }`,(err)=>{
     if(err){
         console.log("Could not connect to database");
     }else{
         console.log('Mongoose connected successfully');
     }
 });
-
-
 app.use(fileUpload());
 // app.set('views', path.join(__dirname, 'views'));
 // app.engine('hbs', hbs.engine({extname: 'hbs',defaultLayout: 'layout',layoutsDir:__dirname+'/views/layout/',usersDir:__dirname+'/views/user/'}));
@@ -55,12 +43,7 @@ app.use(
 app.use(
   "/admin/productsImg",
   express.static(path.join(__dirname, "/public/productsImg"))
-);
-
-
-
-
-
+);  
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -79,7 +62,9 @@ app.use('/admin', require("./server/routes/router"));
 app.use("/", require("./server/routes/userRouter"));
 
 app.use(function(req, res, next) {
+  res.render('user/404 page')
     next(createError(404));
+
   });
 app.use(function(err, req, res, next) {
   
@@ -98,11 +83,6 @@ app.use(function (req, res, next) {
     }
     next();
   }); 
- 
-
-
-
-
   app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })

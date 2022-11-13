@@ -1,4 +1,5 @@
 const { json } = require('express/lib/response');
+const { use } = require('passport');
 const cartDb = require('../model/cartModel')
 var ObjectId = require('mongoose').Types.ObjectId;
 // Add product to cart
@@ -10,6 +11,7 @@ exports.addToCart = async(req,res)=>{
         quantity:1
     }
     let userCart = await cartDb.findOne({user:ObjectId(userId)})
+    
     if (userCart) {
         let data = userCart.products
         let proExist = data.findIndex(product => {
@@ -28,6 +30,7 @@ exports.addToCart = async(req,res)=>{
                 $inc:{"products.$.quantity":1}
             }
             )
+
         }else{
             await cartDb.updateOne({user:ObjectId(userId)},{$push: {products:proObj}})
         }
@@ -37,6 +40,7 @@ exports.addToCart = async(req,res)=>{
             products:[proObj]
         })
         cartObj.save()
+        
     }
     res.json({status:true})
 }
@@ -44,6 +48,7 @@ exports.addToCart = async(req,res)=>{
 exports.changeProductQuantity =async (req,res,next)=>{
     const cartId = req.body.cart;
     const proId = req.body.product;
+    
     const userId = req.body.user;
     let count = req.body.count;
     let quantity = req.body.quantity;
@@ -54,6 +59,7 @@ exports.changeProductQuantity =async (req,res,next)=>{
         {
             $pull:{products:{item:ObjectId(proId)}}
         })
+        
         product.removeProduct = true;
         let totalValue = await cartDb.aggregate([
             {

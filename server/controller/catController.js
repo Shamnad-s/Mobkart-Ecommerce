@@ -1,6 +1,7 @@
 const { NetworkContext } = require('twilio/lib/rest/supersim/v1/network');
 var categoryDb = require('../model/categoryModel');
 const productDb = require('../model/productModel');
+
 exports.create =async (req,res,done)=>{
     try{
         if (!req.body.name){

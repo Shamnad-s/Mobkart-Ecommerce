@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="/css/w3.css" >
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
-        
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
     <style>
         * {
             margin: 0;
@@ -42,7 +43,7 @@
         .chartCard {
            
             height: calc(100vh - 40px);
-            background: rgba(255, 26, 104, 0.2);
+           
             display: flex;
             align-items: center;
             justify-content: center;
@@ -59,14 +60,15 @@
             position: absolute;
             margin-left: 300px;
         }
+        
     </style>
 </head>
 
 <body class="w3-light-grey">
   <!-- Top container -->
-<div class="w3-bar w3-top w3-black w3-large " style="z-index:4">
+<div class="w3-bar w3-top w3-black w3-large" style="z-index:4;height: 50px;">
   <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
-  <button class="btn btn-info" aria-current="page" onclick="adminLogout()">Log Out</button>
+  <button class="btn btn-info pull-right" aria-current="page" onclick="adminLogout()" style="margin-right: 10px;margin-top: 6px;">Log Out</button>
 </div>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -115,9 +117,12 @@
     <nav class="w3-sidebar w3-collapse w3-white" style="z-index:4;width:300px;" id="mySidebar"><br>
         <div class="w3-container w3-row">
           <div class="w3-col s4">
-            <img src="/w3images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
+            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="w3-circle w3-margin-right" style="width:46px">
           </div>
-          
+          <div class="w3-col s8 w3-bar">
+            <span>Welcome, <strong>Mike</strong></span><br>
+            
+          </div>
         </div>
         <hr>
         <div class="w3-container">
@@ -125,8 +130,8 @@
         </div>
         <div class="w3-bar-block">
           <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-          <a href="/admin"class="w3-bar-item w3-button w3-padding "> Admin</a>
-          <a href="/admin/users"class="w3-bar-item w3-button w3-padding "> User Mnagement</a>
+          <a href="/admin"class="w3-bar-item w3-button w3-padding  w3-blue"> Admin</a>
+          <a href="/admin/users"class="w3-bar-item w3-button w3-padding "> User Management</a>
           <a href="/admin/admin-products" class="w3-bar-item w3-button w3-padding">  Product Managemant</a>
           <a  href="/admin/banner" class="w3-bar-item w3-button w3-padding">  Banner Management</a>
           <a  href="/admin/brand" class="w3-bar-item w3-button w3-padding">  Brand Managemant</a>
@@ -212,21 +217,21 @@
         </div>
       </div>
     <!--------------------------------------------Charts--------------------------------------------->
-    <!-- <div class="chartCard"> -->
+    <div class="chartCard">
         <!-- <h2 style="margin-left:300px;position:absolute;top: 15rem;left: 4rem;font-size: 24px;">Payments</h2> -->
-        <!-- <div class="chartBox" style="top:17rem;left:3rem">
+        <div class="chartBox" style="top:17rem;left:3rem">
             <canvas id="Chart"></canvas>
-        </div> -->
+        </div>
         <!-- <h2 style="position:absolute;top: 15rem;left: 24rem;font-size: 24px;">Categories</h2> -->
-        <!-- <div class="chartBox" style="top:17rem;left:23rem;width:35rem">
+       <div class="chartBox" style="top:17rem;left:23rem;width:35rem"> 
             <canvas id="myChart" style="width:100%;"></canvas>
-        </div> -->
+        </div> 
 
         <!-- <h2 style="position:absolute;top: 15rem;left: 60rem;font-size: 24px;">User Status</h2> -->
-        <!-- <div class="chartBox" style="top:17rem;left:59rem">
+        <div class="chartBox" style="top:17rem;left:59rem">
             <canvas id="userChart"></canvas>
         </div>
-    </div> -->
+    </div>
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
@@ -248,7 +253,7 @@
             })
         }
 
-        var xValuesCate = ['Game', 'Editing', 'Office'];
+        var xValuesCate = ['Mobile', 'Headset', 'Shirts'];
         var yValuesCate = '<%=catCounts%>';
         const xCategories = yValuesCate.split(',');
         const yCategories = xCategories.map((num) => {
@@ -273,11 +278,11 @@
         var x2Values = ['Active', 'Blocked'];
         var y2Values = ['<%=activeCount%>', '<%=blockedCount%>'];
         var y3Values = '<%=catCounts%>';
-        var statusColors = ['green', 'red'];
-        var catColors = ["#00aba9", "#2b5797", "#e8c3b9", "#1e7145"]
+        var statusColors = ['violet', 'orange'];
+        var catColors = [ "#1e7145","#00aba9", "#2b5797", "#e8c3b9", "#1e7145"]
 
         new Chart("Chart", {
-            type: "pie",
+            type: "doughnut",
             data: {
                 labels: xValues,
                 datasets: [{
@@ -320,7 +325,7 @@
         });
 
         new Chart("userChart", {
-            type: "pie",
+            type: "doughnut",
             data: {
                 labels: x2Values,
                 datasets: [{
@@ -379,7 +384,7 @@
         }
         </script>
 <style>
-    html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+    html,body,h1,h2,h3,h4,h5,a {font-family: "Raleway", sans-serif}
     </style>
 </body>
 

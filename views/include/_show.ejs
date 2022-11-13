@@ -15,11 +15,11 @@
             </td>
             <% if(users[i].isBlocked){ %>
                 <form  onsubmit="return confirm('Are you sure you want to unblock?');" action="/admin/status/<%= users[i]._id %>?_method=PATCH" method="post">
-                    <td><button  class="btn btn-outline-danger" type="submit">Block</button></td>
+                    <td><button  class="btn btn-danger" type="submit">Block</button></td>
                 </form>
                 <% }else{ %>
                     <form onsubmit="return confirm('Are you sure you want to block?');"  action="/admin/status/<%= users[i]._id %>?_method=PATCH" method="post">
-                        <td><button class="btn btn-outline-success" type="submit">Active</button></td>
+                        <td><button class="btn btn-success" type="submit">Active</button></td>
                     </form>
                     <% } %>
 

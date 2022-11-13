@@ -12,8 +12,8 @@ const Razorpay = require('razorpay');
 const { string } = require('joi'); 
 
 var instance = new Razorpay({
-    key_id: 'rzp_test_lVOl3OlIGN7MEp',
-    key_secret: 'vantsjoFu2XeePP0ftwBe9WG',
+    key_id: process.env.key_id || 'rzp_test_lVOl3OlIGN7MEp',
+    key_secret: process.env.key_secret || 'vantsjoFu2XeePP0ftwBe9WG',
     });
 
 // My Orders 

@@ -1,6 +1,45 @@
 <%-include('../include/_adminhead')%>
     <!--Main-->
-    <main id="main">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/w3.css" >
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+<body class="w3-light-grey">
+  <div class="w3-bar w3-top w3-black w3-large" style="z-index:4;height: 50px;">
+    <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+    <button class="btn btn-info pull-right" aria-current="page" onclick="adminLogout()" style="margin-right: 10px;margin-top: 6px;">Log Out</button>
+  </div>
+<nav class="w3-sidebar w3-collapse w3-white" style="z-index:4;width:300px;" id="mySidebar"><br>
+    <div class="w3-container w3-row">
+      <div class="w3-col s4">
+        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="w3-circle w3-margin-right" style="width:46px">
+      </div>
+      <div class="w3-col s8 w3-bar">
+        <span>Welcome, <strong>Mike</strong></span><br>
+        
+      </div>
+    </div>
+    <hr>
+    <div class="w3-container">
+      <h5>Dashboard</h5>
+    </div>
+    <div class="w3-bar-block">
+      <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+      <a href="/admin"class="w3-bar-item w3-button w3-padding"> Admin</a>
+      <a href="/admin/users"class="w3-bar-item w3-button w3-padding w3-blue"> User Management</a>
+      <a href="/admin/admin-products" class="w3-bar-item w3-button w3-padding">  Product Managemant</a>
+      <a  href="/admin/banner" class="w3-bar-item w3-button w3-padding">  Banner Management</a>
+      <a  href="/admin/brand" class="w3-bar-item w3-button w3-padding">  Brand Managemant</a>
+      <a href="/admin/category" class="w3-bar-item w3-button w3-padding">  Category Management</a>
+      <a href="/admin/offer" class="w3-bar-item w3-button w3-padding">  Offer Managemant</a>
+      <a href="/admin/coupon" class="w3-bar-item w3-button w3-padding">  Coupon management</a>
+      <a href="/admin/admin-orders" class="w3-bar-item w3-button w3-padding"> Orders Management</a>
+      <a href="/admin/coupon-history" class="w3-bar-item w3-button w3-padding">  Coupon history</a><br><br>
+    </div>
+  </nav>
+    <main id="main" style="margin-left: 160px;">
         <div id="container">
             <div class="box-nav d-flex justify-between">
                 <a href="/admin/add" class="border-shadow" style="text-decoration: none;">
@@ -25,6 +64,7 @@
             </table>
         </div>
     </main>
+  </body>
     <!--/Main-->
 
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -35,7 +75,7 @@
     <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
 
-    <!-- <script type="text/javascript" charset="utf-8">
+    <script type="text/javascript" charset="utf-8">
         $(document).ready(function () {
             $('#myTable').DataTable({
                 dom: 'Bfrtip',
@@ -44,8 +84,34 @@
                 ]
             });
         });
-    </script> -->
-
+    </script>
+<script>
+    // Get the Sidebar
+    var mySidebar = document.getElementById("mySidebar");
+    
+    // Get the DIV with overlay effect
+    var overlayBg = document.getElementById("myOverlay");
+    
+    // Toggle between showing and hiding the sidebar, and add overlay effect
+    function w3_open() {
+      if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+        overlayBg.style.display = "none";
+      } else {
+        mySidebar.style.display = 'block';
+        overlayBg.style.display = "block";
+      }
+    }
+    
+    // Close the sidebar with the close button
+    function w3_close() {
+      mySidebar.style.display = "none";
+      overlayBg.style.display = "none";
+    }
+    </script>
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"

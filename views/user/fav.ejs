@@ -7,6 +7,7 @@
     <title> MobKart</title>
 
     <link rel="stylesheet" type="text/css" href="css/cart.css">
+    <link rel="stylesheet" type="text/css" href="css/cartcss3.css">
 
     <link rel="stylesheet" type="text/css"
         href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -38,7 +39,10 @@
 
             <div class="products" style="margin-left: 4rem;">
                 <% if (cartItems.length==0) { %>
-                    <h2>You have no Favorites</h2>
+                   
+                    <div>
+                        <img style="margin-top: 7rem;" src="images/empty_wishlist.png">
+                    </div>
             </div>
             <% } else { %>
 
@@ -84,7 +88,7 @@
         </div>
 
     </div>
-
+<!--  -->
 </body>
 <script>
     function removeProfav(cartId, proId) {

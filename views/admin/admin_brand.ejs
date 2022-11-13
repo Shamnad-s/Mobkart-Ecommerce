@@ -1,11 +1,48 @@
 <%-include('../include/_adminhead')%>
     <!-- Products -->
+    <link rel="stylesheet" href="/css/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+    <body class="w3-light-grey">
+       
+    <div class="w3-bar w3-top w3-black w3-large" style="z-index:4;height: 50px;">
+        <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+        <button class="btn btn-info pull-right" aria-current="page" onclick="adminLogout()" style="margin-right: 10px;margin-top: 6px;">Log Out</button>
+      </div>
+  <nav class="w3-sidebar w3-collapse w3-white" style="z-index:4;width:300px;" id="mySidebar"><br>
+    <div class="w3-container w3-row">
+      <div class="w3-col s4">
+        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="w3-circle w3-margin-right" style="width:46px">
+      </div>
+      <div class="w3-col s8 w3-bar">
+        <span>Welcome, <strong>Mike</strong></span><br>
+        
+      </div>
+    </div>
+    <hr>
+    <div class="w3-container">
+      <h5>Dashboard</h5>
+    </div>
+    <div class="w3-bar-block">
+      <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+      <a href="/admin"class="w3-bar-item w3-button w3-padding "> Admin</a>
+      <a href="/admin/users"class="w3-bar-item w3-button w3-padding "> User Management</a>
+      <a href="/admin/admin-products" class="w3-bar-item w3-button w3-padding">  Product Managemant</a>
+      <a  href="/admin/banner" class="w3-bar-item w3-button w3-padding">  Banner Management</a>
+      <a  href="/admin/brand" class="w3-bar-item w3-button w3-padding w3-blue">  Brand Managemant</a>
+      <a href="/admin/category" class="w3-bar-item w3-button w3-padding ">  Category Management</a>
+      <a href="/admin/offer" class="w3-bar-item w3-button w3-padding">  Offer Managemant</a>
+      <a href="/admin/coupon" class="w3-bar-item w3-button w3-padding">  Coupon management</a>
+      <a href="/admin/admin-orders" class="w3-bar-item w3-button w3-padding"> Orders Management</a>
+      <a href="/admin/coupon-history" class="w3-bar-item w3-button w3-padding">  Coupon history</a><br><br>
+    </div>
+  </nav>
     <section>
-        <div class="container">
-            <div class="row mt-4">
+        <div class="container" style="margin-left: 300px;padding-left: 50px;">
+            <div class="row mt-4" style="margin-right: 100px;">
                 <a href="/admin/add-brand" class="btn btn-success ml-auto proadd">Add Brand</a>
             </div>
-            <table class="table mt-4">
+            <table class="table mt-4" style="padding-left: 40px;">
                 <thead>
                     <tr>
                         <th scope="col">No.</th>
@@ -24,15 +61,19 @@
                                 <%=brand[i].name%>
                             </td>
                             <td>
-                                <a href="/admin/update-brand?id=<%= brand[i]._id %>" class="btn border-shadow update">
-                                    <i class="fa-solid fa-pencil"></i>
+                                <a href="/admin/update-brand?id=<%= brand[i]._id %>">
+                                    <li class="list-inline-item" style="display: grid;width: 50px;">
+                                        <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip"
+                                            data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                                    </li>
                                 </a>
-                                <div>
+                            
+                                <li class="list-inline-item" style="display: grid; width: 50px;">
                                     <button onclick="deleteBrand('<%=brand[i]._id %>')"
-                                        class="btn border-shadow update">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </button>
-                                </div>
+                                        class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip"
+                                        data-placement="top" title="Delete">
+                                        <i class="fa fa-trash"></i></button>
+                                </li>
                             </td>
                         </tr>
                         <% } %>
@@ -40,6 +81,34 @@
             </table>
         </div>
     </section>
+</body>
+    <script>
+        // Get the Sidebar
+        var mySidebar = document.getElementById("mySidebar");
+        
+        // Get the DIV with overlay effect
+        var overlayBg = document.getElementById("myOverlay");
+        
+        // Toggle between showing and hiding the sidebar, and add overlay effect
+        function w3_open() {
+          if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+            overlayBg.style.display = "none";
+          } else {
+            mySidebar.style.display = 'block';
+            overlayBg.style.display = "block";
+          }
+        }
+        
+        // Close the sidebar with the close button
+        function w3_close() {
+          mySidebar.style.display = "none";
+          overlayBg.style.display = "none";
+        }
+        </script>
+<style>
+    html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+    </style>
     <!-- /Products -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
