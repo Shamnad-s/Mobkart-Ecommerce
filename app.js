@@ -51,7 +51,7 @@ app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, "public")));
 app.use(
   session({
-    secret: 'secret key',
+    secret: process.env.secret || 'secret key',
     resave: false,
     saveUninitialized: true,
   })
@@ -62,7 +62,7 @@ app.use('/admin', require("./server/routes/router"));
 app.use("/", require("./server/routes/userRouter"));
 
 app.use(function(req, res, next) {
-  res.render('user/404 page')
+  
     next(createError(404));
 
   });
