@@ -51,7 +51,9 @@ userRoute.get("/loginotp", (req, res) => {
     if (req.session.isUserLogin) {
         res.redirect('/')
     }
+    
     res.status(200).render("user/user_loginotp", { error: "" });
+    console.log(error)
 });
 userRoute.post("/mobile", otpcontroller.mobileNum);
 // Add to cart
