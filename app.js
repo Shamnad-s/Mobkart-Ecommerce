@@ -13,14 +13,18 @@ const session = require('express-session');
 const app = express();
 const port = 3000
 
+// mongodb+srv://Amien:shamnad123@cluster0.gului2c.mongodb.net/?retryWrites=true&w=majority
 
-mongoose.connect(`mongodb://${process.env.MONGOURL || 'localhost:27017/lightkart' }`,(err)=>{
+
+mongoose.connect(`mongodb+srv://${process.env.MONGOURL}`,(err)=>{
     if(err){
         console.log("Could not connect to database");
+        console.log(err)
     }else{
         console.log('Mongoose connected successfully');
     }
 });
+
 app.use(fileUpload());
 // app.set('views', path.join(__dirname, 'views'));
 // app.engine('hbs', hbs.engine({extname: 'hbs',defaultLayout: 'layout',layoutsDir:__dirname+'/views/layout/',usersDir:__dirname+'/views/user/'}));
@@ -51,7 +55,7 @@ app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, "public")));
 app.use(
   session({
-    secret: process.env.secret || 'secret key',
+    secret: process.env.secret ,
     resave: false,
     saveUninitialized: true,
   })

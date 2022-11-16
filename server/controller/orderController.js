@@ -1,4 +1,5 @@
 var ObjectId = require('mongoose').Types.ObjectId;
+require("dotenv").config();
 const savedAddressDb = require('../model/savedAddressModel')
 const productDb = require('../model/productModel')
 const walletDb = require('../model/walletModel')
@@ -12,8 +13,8 @@ const Razorpay = require('razorpay');
 const { string } = require('joi'); 
 
 var instance = new Razorpay({
-    key_id: process.env.key_id || 'rzp_test_lVOl3OlIGN7MEp',
-    key_secret: process.env.key_secret || 'vantsjoFu2XeePP0ftwBe9WG',
+    key_id: process.env.key_id ,
+    key_secret: process.env.key_secret ,
     });
 
 // My Orders 
