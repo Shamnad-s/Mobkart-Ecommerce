@@ -12,10 +12,11 @@ exports.showOffer = async(req,res)=>{
                     foreignField:'_id',
                     as:'product'
                 }
-            }
+            },
+            
         ])
-        console.log(offer);
-        // console.log(offer[0].product)
+        console.log(offer[0]);
+
         res.render('admin/offer',{offer})
     }catch(e){
         console.log(e);
