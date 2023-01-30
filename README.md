@@ -1,2 +1,2 @@
-# templ-Ecoomerce
+# templ-Ecommerce
  
