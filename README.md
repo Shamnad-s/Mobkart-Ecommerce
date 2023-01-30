@@ -11,7 +11,7 @@ Use the package manager npm to install dependencies.
 npm i
 Create one file name as ".env" and add the below contents
 
-PORT = 8000 // Port for run the server
+PORT = 3000 // Port for run the server
 
 TWILIO_ACCOUNT_SID //
 TWILIO_AUTH_TOKEN // Twilio for OTP validation these data is taken from our personal twilio account
