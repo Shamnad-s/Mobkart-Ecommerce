@@ -17,7 +17,7 @@ TWILIO_ACCOUNT_SID //
 TWILIO_AUTH_TOKEN // Twilio for OTP validation these data is taken from our personal twilio account
 TWILIO_SERVICE_SID //
 
-MONGOURL= mongodb://localhost:27017/ckart
+MONGOURL= mongodb://localhost:27017//
 
 RAZORPAY_KEY_ID // Razorpay is for payment integration.
 RAZORPAY_KEY_SECRET // You can get this ID and Secret Key from razorpay account
